@@ -1,117 +1,80 @@
 import React, { useState, useEffect } from 'react';
-import { X, Mail, ArrowRight } from 'lucide-react';
+import { X, ArrowRight } from 'lucide-react';
 
 const NewsletterPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [isSubmited, setIsSubmited] = useState(false);
 
-  // Déclenchement automatique après 5 secondes ou au scroll
   useEffect(() => {
     const timer = setTimeout(() => {
       const hasJoined = localStorage.getItem('mabe_newsletter_joined');
       if (!hasJoined) setIsOpen(true);
     }, 5000);
-
     return () => clearTimeout(timer);
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logique Supabase ici
-    console.log("Email enregistré :", email);
     setIsSubmited(true);
     localStorage.setItem('mabe_newsletter_joined', 'true');
-    
-    // Fermeture automatique après succès
-    setTimeout(() => setIsOpen(false), 3000);
+    setTimeout(() => setIsOpen(false), 2000);
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-6">
-      {/* Overlay sombre avec flou artistique */}
-      <div 
-        className="absolute inset-0 bg-[#050505]/80 backdrop-blur-md transition-opacity duration-700"
-        onClick={() => setIsOpen(false)}
-      />
-
-      {/* Conteneur de la Popup */}
-      <div className="relative w-full max-w-2xl bg-[#050505] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.9)] overflow-hidden rounded-sm animate-in fade-in zoom-in duration-500">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-neutral-900/20 backdrop-blur-sm transition-all duration-700">
+      
+      {/* Conteneur Lumineux */}
+      <div className="relative w-full max-w-lg bg-[#FCFAF6] border border-neutral-200 p-12 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.1)] animate-in fade-in zoom-in duration-700">
         
-        {/* Lueur dorée interne */}
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-mabe-gold/10 blur-[80px] rounded-full pointer-events-none" />
-
         {/* Bouton Fermer */}
         <button 
           onClick={() => setIsOpen(false)}
-          className="absolute top-6 right-6 text-white/30 hover:text-mabe-gold transition-colors z-20"
+          className="absolute top-8 right-8 text-neutral-400 hover:text-neutral-900 transition-colors"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-5">
-          
-          {/* Partie Image (Optionnelle mais très Premium) */}
-          <div className="hidden md:block md:col-span-2 relative overflow-hidden border-r border-white/5">
-            <img 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069" 
-              alt="Mabe Excellence"
-              className="w-full h-full object-cover grayscale brightness-50"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#050505]" />
+        {!isSubmited ? (
+          <div className="flex flex-col text-center">
+            <span className="text-[9px] uppercase tracking-[0.4em] text-neutral-400 mb-6 font-medium">
+              EXCELENCIA MABE Group
+            </span>
+            
+            <h2 className="text-3xl font-light text-neutral-900 uppercase tracking-tight mb-4">
+              L'Excellence <br/>
+              <span className="font-bold text-[#C9A227]">en avant-première</span>
+            </h2>
+
+            <p className="text-neutral-500 text-sm font-light leading-relaxed mb-10 max-w-sm mx-auto">
+              Recevez nos perspectives stratégiques et accédez à nos opportunités exclusives.
+            </p>
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              <input 
+                type="email" 
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="votre.adresse@email.com"
+                className="w-full bg-transparent border-b border-neutral-300 py-3 text-center text-neutral-900 text-sm font-light focus:outline-none focus:border-[#C9A227] transition-colors placeholder:text-neutral-400"
+              />
+              <button 
+                type="submit"
+                className="group flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.3em] font-bold text-neutral-900 hover:text-[#C9A227] transition-all duration-500"
+              >
+                S'inscrire <ArrowRight className="w-3 h-3 group-hover:translate-x-2 transition-transform" />
+              </button>
+            </form>
           </div>
-
-          {/* Partie Contenu */}
-          <div className="md:col-span-3 p-10 md:p-14 relative z-10 flex flex-col justify-center">
-            {!isSubmited ? (
-              <>
-                <h4 className="text-mabe-gold uppercase tracking-[0.4em] text-[8px] font-sans font-black mb-4">
-                  Privilège & Vision
-                </h4>
-                <h2 className="text-white font-sans font-black text-3xl uppercase tracking-tighter leading-none mb-6">
-                  Rejoignez <br/> <span className="text-white/40 font-light italic">l'Incontournable</span>
-                </h2>
-                <p className="text-white/50 font-sans font-light text-sm leading-relaxed mb-8">
-                  Recevez nos analyses stratégiques et nos opportunités d'investissement en priorité.
-                </p>
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="relative group">
-                    <Mail className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-mabe-gold/50 group-focus-within:text-mabe-gold transition-colors" />
-                    <input 
-                      type="email" 
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Votre adresse email"
-                      className="w-full bg-transparent border-b border-white/10 py-3 pl-8 text-white text-sm font-sans font-light focus:outline-none focus:border-mabe-gold transition-all"
-                    />
-                  </div>
-                  <button 
-                    type="submit"
-                    className="w-full mt-4 flex items-center justify-center gap-3 bg-mabe-gold text-mabe-dark py-4 text-[10px] font-sans font-black uppercase tracking-[0.3em] hover:bg-white transition-all duration-500"
-                  >
-                    S'abonner <ArrowRight className="w-3 h-3" />
-                  </button>
-                </form>
-                <p className="text-[8px] text-white/20 mt-6 uppercase tracking-widest font-sans">
-                  Respect total de votre confidentialité.
-                </p>
-              </>
-            ) : (
-              <div className="text-center py-10 animate-in fade-in zoom-in duration-700">
-                <div className="w-16 h-16 bg-mabe-gold/10 border border-mabe-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                  <ArrowRight className="text-mabe-gold rotate-[-45deg]" />
-                </div>
-                <h3 className="text-white font-sans font-black text-2xl uppercase tracking-tighter mb-2">Bienvenue</h3>
-                <p className="text-mabe-gold text-[10px] font-sans font-bold uppercase tracking-[0.4em]">Votre accès exclusif est activé.</p>
-              </div>
-            )}
+        ) : (
+          <div className="py-10 text-center animate-in fade-in duration-500">
+            <h3 className="text-xl font-light text-neutral-900 uppercase tracking-[0.2em]">Confirmé</h3>
+            <div className="w-12 h-[1px] bg-[#C9A227] mx-auto mt-6" />
           </div>
-
-        </div>
+        )}
       </div>
     </div>
   );
