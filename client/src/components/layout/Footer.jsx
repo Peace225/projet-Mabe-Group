@@ -1,98 +1,69 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { MapPin, Mail, Phone, ShieldCheck } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-[#050505] pt-24 pb-10 px-6 border-t border-white/5 relative overflow-hidden">
-      
-      {/* Effet de lumière subtil au centre du footer */}
-      <div className="absolute bottom-0 left-1/2 w-[600px] h-[300px] bg-mabe-gold/5 blur-[150px] rounded-full -translate-x-1/2 translate-y-1/2 pointer-events-none" />
-
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Grille Principale */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           
-          {/* Colonne 1 : Marque & Description (Prend 2 colonnes sur Desktop) */}
-          <div className="lg:col-span-2">
-            <Link to="/" className="inline-block mb-6 group">
-              <h4 className="text-white font-sans font-black text-3xl uppercase tracking-tighter flex items-center gap-2">
-                Excellencia <span className="text-mabe-gold group-hover:text-white transition-colors duration-500">Mabe</span>
-              </h4>
-            </Link>
-            <p className="text-white/50 font-sans text-sm font-light leading-relaxed max-w-sm">
-              Un conglomérat dédié à l'excellence opérationnelle. Nous fusionnons stratégie digitale, puissance industrielle et force commerciale pour redéfinir les standards de demain.
+          {/* Marque */}
+          <div className="lg:col-span-1">
+            <h4 className="text-white font-black text-2xl uppercase tracking-tighter mb-6">
+              Excellencia <span className="text-mabe-gold">Mabe</span>
+            </h4>
+            <p className="text-white/40 text-xs leading-relaxed font-light">
+              Conglomérat dédié à l'excellence opérationnelle. Fusion stratégique de solutions pour les standards de demain.
             </p>
           </div>
 
-          {/* Colonne 2 : Écosystème (Liens rapides) */}
+          {/* Écosystème */}
           <div>
-            <h4 className="text-mabe-gold font-sans text-[10px] font-bold uppercase tracking-[0.3em] mb-6 relative inline-block">
-              Notre Écosystème
-              <span className="absolute -bottom-2 left-0 w-4 h-[1px] bg-mabe-gold" />
-            </h4>
-            <ul className="space-y-4">
-              {['Marketing & Com', 'Pôle Industriel', 'Commerce & Négoce', 'Digital Consulting'].map((item) => (
-                <li key={item}>
-                  <Link 
-                    to="#" 
-                    className="text-white/50 font-sans text-sm font-light hover:text-mabe-gold hover:translate-x-2 transition-all duration-300 inline-block"
-                  >
-                    {item}
-                  </Link>
-                </li>
+            <h4 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8 border-l-2 border-mabe-gold pl-4">Écosystème</h4>
+            <ul className="space-y-4 text-white/50 text-xs font-light">
+              {['Marketing & Com', 'Pôle Industriel', 'Immobilier', 'Digital Consulting'].map((item) => (
+                <li key={item}><Link to="#" className="hover:text-mabe-gold transition-colors">{item}</Link></li>
               ))}
             </ul>
           </div>
 
-          {/* Colonne 3 : Contact & Localisation */}
-          <div>
-            <h4 className="text-mabe-gold font-sans text-[10px] font-bold uppercase tracking-[0.3em] mb-6 relative inline-block">
-              Contact
-              <span className="absolute -bottom-2 left-0 w-4 h-[1px] bg-mabe-gold" />
-            </h4>
-            <ul className="space-y-5 text-white/50 font-sans text-sm font-light">
-              <li className="flex items-start gap-4 group">
-                <svg className="w-5 h-5 mt-0.5 text-white/30 group-hover:text-mabe-gold transition-colors duration-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span className="leading-relaxed">
-                  Siège Social<br />
-                  <span className="text-white/70">Abidjan, Côte d'Ivoire</span>
-                </span>
-              </li>
-              <li className="flex items-center gap-4 group">
-                <svg className="w-5 h-5 text-white/30 group-hover:text-mabe-gold transition-colors duration-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <a href="mailto:contact@excellenciamabe.com" className="hover:text-mabe-gold transition-colors duration-300 relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[1px] after:bottom-0 after:left-0 after:bg-mabe-gold hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">
-                  contact@excellenciamabe.com
-                </a>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-
-        {/* Barre de Copyright Finale */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-white/30 font-sans text-xs font-light tracking-wide">
-            &copy; {currentYear} Excellencia Mabe Group. Tous droits réservés.
-          </p>
-          
-          <div className="flex items-center gap-8 text-white/30 font-sans text-[10px] uppercase tracking-[0.2em] font-semibold">
-            <Link to="/mentions-legales" className="hover:text-mabe-gold transition-colors duration-300">
-              Mentions Légales
-            </Link>
-            <Link to="/confidentialite" className="hover:text-mabe-gold transition-colors duration-300">
-              Confidentialité
-            </Link>
+          {/* Contact (Mis à jour) */}
+          <div className="lg:col-span-2 space-y-6">
+            <h4 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8 border-l-2 border-mabe-gold pl-4">Contact & Légalité</h4>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <ul className="space-y-4 text-white/50 text-xs font-light">
+                <li className="flex items-center gap-3"><MapPin size={14} className="text-mabe-gold" /> Bangui, RCA</li>
+                <li className="flex items-center gap-3"><Phone size={14} className="text-mabe-gold" /> +236 74 38 67 38</li>
+                <li className="flex items-center gap-3"><Mail size={14} className="text-mabe-gold" /> excellenciamabe@gmail.com</li>
+              </ul>
+              
+              <div className="bg-white/[0.03] p-4 border border-white/5">
+                <p className="text-white/30 text-[10px] uppercase tracking-widest mb-2 flex items-center gap-2">
+                  <ShieldCheck size={12} /> Informations légales
+                </p>
+                <p className="text-white/60 text-[11px] leading-relaxed">
+                  RCCM : RCBG2025B2905 <br/>
+                  NIU : 2362025M38832R
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
+        {/* Barre Basse */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] text-white/30 uppercase tracking-widest">
+          <p>&copy; {currentYear} Excellencia Mabe Group.</p>
+          <div className="flex gap-8">
+            <Link to="/mentions-legales" className="hover:text-mabe-gold transition-colors">Mentions Légales</Link>
+            <Link to="/confidentialite" className="hover:text-mabe-gold transition-colors">Confidentialité</Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

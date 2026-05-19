@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Partenaire = () => {
+export default function Partenaire() {
   const [formData, setFormData] = useState({
     nom: '',
     entreprise: '',
@@ -11,7 +11,7 @@ const Partenaire = () => {
   });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const handleChange = (e) => {
@@ -21,36 +21,37 @@ const Partenaire = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Demande de partenariat envoyée :", formData);
+    // Optionnel : Intégration d'un toast premium ou notification UI à la place de l'alert native
     alert("Votre proposition a été transmise à la Direction Générale.");
   };
 
   return (
-    <div className="bg-[#050505] min-h-screen pt-32 pb-24 relative overflow-hidden">
+    <div className="bg-[#FCFAF6] min-h-screen pt-40 pb-32 relative overflow-hidden text-[#1A1A1A] antialiased">
       
-      {/* Background Glows (Ambiance Luxe) */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-mabe-gold/5 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-mabe-gold/5 blur-[150px] rounded-full translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+      {/* Halos d'ambiance organiques et discrets */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#C9A227]/3 blur-[160px] rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none mix-blend-multiply" />
+      <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-[#C9A227]/2 blur-[140px] rounded-full translate-y-1/3 -translate-x-1/4 pointer-events-none mix-blend-multiply" />
 
-      {/* --- SECTION INTRO --- */}
-      <section className="relative px-6 md:px-12 max-w-7xl mx-auto mb-32 z-10">
+      {/* --- SECTION INTRO (ÉDITORIAL) --- */}
+      <section className="relative px-6 md:px-12 max-w-7xl mx-auto mb-36 z-10">
         <div className="flex flex-col items-start relative pl-6 md:pl-10">
-          <div className="absolute left-0 top-2 bottom-2 w-[2px] bg-gradient-to-b from-mabe-gold to-transparent" />
+          <div className="absolute left-0 top-2 bottom-2 w-[2px] bg-gradient-to-b from-[#C9A227] to-transparent" />
           
-          <h4 className="text-mabe-gold uppercase tracking-[0.4em] text-[10px] mb-6 font-sans font-semibold">
+          <span className="text-[#C9A227] uppercase tracking-[0.5em] text-[10px] mb-6 font-bold block">
             Alliances Stratégiques
-          </h4>
-          <h1 className="text-white font-sans font-black text-5xl md:text-8xl uppercase tracking-tighter leading-[0.9] mb-8">
+          </span>
+          <h1 className="text-[#1A1A1A] font-black text-5xl md:text-8xl uppercase tracking-tighter leading-[0.85] mb-10">
             Bâtir <br />
-            <span className="text-white/40 font-light italic">L'Avenir</span>
+            <span className="text-gray-300 font-light font-serif italic lowercase">l'</span>avenir
           </h1>
-          <p className="text-white/50 max-w-2xl text-base md:text-lg leading-relaxed font-sans font-light tracking-wide italic">
-            MABE GROUP cultive des collaborations avec des institutions et des investisseurs visionnaires pour transformer des opportunités sectorielles en succès commerciaux d'envergure.
+          <p className="text-[#525252] max-w-2xl text-base md:text-lg leading-relaxed font-light tracking-wide">
+            EXCELENCIA MABE GROUP cultive des collaborations avec des institutions et des investisseurs visionnaires pour transformer des opportunités sectorielles en succès commerciaux d'envergure.
           </p>
         </div>
       </section>
 
-      {/* --- OPPORTUNITÉS (CARTES ÉPURÉES) --- */}
-      <section className="max-w-7xl mx-auto px-6 mb-40 relative z-10">
+      {/* --- OPPORTUNITÉS (CARTES DESIGN MINIMALISTE) --- */}
+      <section className="max-w-7xl mx-auto px-6 mb-44 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {[
             {
@@ -69,15 +70,18 @@ const Partenaire = () => {
               text: "Rejoignez notre réseau de commerce de détail pour distribuer des marques de prestige sur les marchés émergents."
             }
           ].map((item, i) => (
-            <div key={i} className="group relative p-10 bg-white/[0.02] border border-white/5 backdrop-blur-sm rounded-sm transition-all duration-700 hover:-translate-y-2 hover:border-mabe-gold/30">
-              <span className="text-mabe-gold font-sans font-black text-4xl block mb-8 opacity-40 group-hover:opacity-100 transition-opacity">
+            <div 
+              key={i} 
+              className="group relative p-10 bg-white border border-[#1A1A1A]/5 shadow-[0_15px_40px_rgba(0,0,0,0.01)] rounded-sm transition-all duration-700 hover:-translate-y-2 hover:border-[#C9A227]/30 hover:shadow-[0_30px_60px_rgba(0,0,0,0.02)]"
+            >
+              <span className="text-[#C9A227] font-black text-3xl block mb-8 opacity-20 group-hover:opacity-100 transition-all duration-500 tracking-tighter">
                 {item.num}
               </span>
-              <h3 className="text-white text-xl font-sans font-bold uppercase tracking-widest mb-6">
+              <h3 className="text-[#1A1A1A] text-lg font-bold uppercase tracking-widest mb-5 group-hover:text-[#C9A227] transition-colors duration-300">
                 {item.title}
               </h3>
-              <div className="w-8 h-[1px] bg-white/10 mb-6 group-hover:w-16 group-hover:bg-mabe-gold transition-all duration-500" />
-              <p className="text-white/40 text-sm leading-relaxed font-sans font-light group-hover:text-white/60 transition-colors">
+              <div className="w-6 h-[1px] bg-[#1A1A1A]/10 mb-6 group-hover:w-12 group-hover:bg-[#C9A227] transition-all duration-500" />
+              <p className="text-gray-400 text-sm leading-relaxed font-light group-hover:text-[#525252] transition-colors duration-500">
                 {item.text}
               </p>
             </div>
@@ -85,30 +89,31 @@ const Partenaire = () => {
         </div>
       </section>
 
-      {/* --- FORMULAIRE BUSINESS (STYLE ÉDITORIAL) --- */}
-      <section className="max-w-5xl mx-auto px-6 relative z-10">
-        <div className="bg-white/[0.02] border border-white/5 p-10 md:p-20 shadow-[0_40px_100px_rgba(0,0,0,0.5)] rounded-sm">
+      {/* --- FORMULAIRE BUSINESS (MONOLITHE BLANC ÉPURÉ) --- */}
+      <section className="max-w-4xl mx-auto px-6 relative z-10">
+        <div className="bg-white border border-[#1A1A1A]/5 p-10 md:p-20 shadow-[0_30px_70px_rgba(0,0,0,0.02)] rounded-sm">
           
           <div className="mb-20 text-center">
-            <h2 className="text-white font-sans font-black text-3xl md:text-4xl uppercase tracking-tighter mb-4">
+            <h2 className="text-[#1A1A1A] font-black text-2xl md:text-3xl uppercase tracking-tighter mb-3">
               Dossier de Partenariat
             </h2>
-            <p className="text-mabe-gold text-[10px] font-sans font-bold uppercase tracking-[0.4em]">Étude Prioritaire de votre Proposition</p>
+            <p className="text-[#C9A227] text-[9px] font-bold uppercase tracking-[0.4em]">Étude Prioritaire de votre Proposition</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-16">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              
               {/* Nom */}
               <div className="relative group">
                 <input 
                   type="text" 
                   name="nom" 
                   onChange={handleChange}
-                  className="peer w-full bg-transparent border-b border-white/10 py-4 text-white font-sans font-light focus:outline-none focus:border-mabe-gold transition-colors placeholder-transparent"
+                  className="peer w-full bg-transparent border-b border-[#1A1A1A]/10 py-3 text-[#1A1A1A] font-light focus:outline-none focus:border-[#C9A227] transition-colors placeholder-transparent text-sm"
                   placeholder="Nom"
                   required
                 />
-                <label className="absolute left-0 -top-4 text-[9px] text-mabe-gold uppercase tracking-[0.2em] font-black transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/20 peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-mabe-gold">
+                <label className="absolute left-0 -top-4 text-[9px] text-[#C9A227] uppercase tracking-[0.2em] font-bold transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-[#C9A227]">
                   Nom du Dirigeant
                 </label>
               </div>
@@ -119,28 +124,29 @@ const Partenaire = () => {
                   type="text" 
                   name="entreprise" 
                   onChange={handleChange}
-                  className="peer w-full bg-transparent border-b border-white/10 py-4 text-white font-sans font-light focus:outline-none focus:border-mabe-gold transition-colors placeholder-transparent"
+                  className="peer w-full bg-transparent border-b border-[#1A1A1A]/10 py-3 text-[#1A1A1A] font-light focus:outline-none focus:border-[#C9A227] transition-colors placeholder-transparent text-sm"
                   placeholder="Organisation"
                   required
                 />
-                <label className="absolute left-0 -top-4 text-[9px] text-mabe-gold uppercase tracking-[0.2em] font-black transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/20 peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-mabe-gold">
+                <label className="absolute left-0 -top-4 text-[9px] text-[#C9A227] uppercase tracking-[0.2em] font-bold transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-[#C9A227]">
                   Organisation / Structure
                 </label>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              
               {/* Email */}
               <div className="relative group">
                 <input 
                   type="email" 
                   name="email" 
                   onChange={handleChange}
-                  className="peer w-full bg-transparent border-b border-white/10 py-4 text-white font-sans font-light focus:outline-none focus:border-mabe-gold transition-colors placeholder-transparent"
+                  className="peer w-full bg-transparent border-b border-[#1A1A1A]/10 py-3 text-[#1A1A1A] font-light focus:outline-none focus:border-[#C9A227] transition-colors placeholder-transparent text-sm"
                   placeholder="Email"
                   required
                 />
-                <label className="absolute left-0 -top-4 text-[9px] text-mabe-gold uppercase tracking-[0.2em] font-black transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/20 peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-mabe-gold">
+                <label className="absolute left-0 -top-4 text-[9px] text-[#C9A227] uppercase tracking-[0.2em] font-bold transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-[#C9A227]">
                   Email Professionnel
                 </label>
               </div>
@@ -150,16 +156,16 @@ const Partenaire = () => {
                 <select 
                   name="typePartenariat"
                   onChange={handleChange}
-                  className="peer w-full bg-transparent border-b border-white/10 py-4 text-white/50 font-sans font-light focus:outline-none focus:border-mabe-gold cursor-pointer"
+                  className="peer w-full bg-transparent border-b border-[#1A1A1A]/10 py-3 text-[#1A1A1A]/70 font-light focus:outline-none focus:border-[#C9A227] cursor-pointer text-sm native-select"
                   required
                 >
-                  <option value="" className="bg-black">Nature du Projet...</option>
-                  <option value="invest" className="bg-black">Investissement</option>
-                  <option value="tech" className="bg-black">Technologie & Digital</option>
-                  <option value="industriel" className="bg-black">Développement Industriel</option>
-                  <option value="retail" className="bg-black">Commerce & Distribution</option>
+                  <option value="" className="bg-white text-[#1A1A1A]">Nature du Projet...</option>
+                  <option value="invest" className="bg-white text-[#1A1A1A]">Investissement</option>
+                  <option value="tech" className="bg-white text-[#1A1A1A]">Technologie & Digital</option>
+                  <option value="industriel" className="bg-white text-[#1A1A1A]">Développement Industriel</option>
+                  <option value="retail" className="bg-white text-[#1A1A1A]">Commerce & Distribution</option>
                 </select>
-                <label className="absolute left-0 -top-4 text-[9px] text-mabe-gold uppercase tracking-[0.2em] font-black">
+                <label className="absolute left-0 -top-4 text-[9px] text-[#C9A227] uppercase tracking-[0.2em] font-bold">
                   Pôle d'Intérêt
                 </label>
               </div>
@@ -169,37 +175,36 @@ const Partenaire = () => {
             <div className="relative group">
               <textarea 
                 name="message" 
-                rows="4"
+                rows="3"
                 onChange={handleChange}
-                className="peer w-full bg-transparent border-b border-white/10 py-4 text-white font-sans font-light focus:outline-none focus:border-mabe-gold transition-all resize-none placeholder-transparent"
+                className="peer w-full bg-transparent border-b border-[#1A1A1A]/10 py-3 text-[#1A1A1A] font-light focus:outline-none focus:border-[#C9A227] transition-all resize-none placeholder-transparent text-sm"
                 placeholder="Message"
                 required
               />
-              <label className="absolute left-0 -top-4 text-[9px] text-mabe-gold uppercase tracking-[0.2em] font-black transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/20 peer-placeholder-shown:top-4 peer-focus:-top-4 peer-focus:text-mabe-gold">
+              <label className="absolute left-0 -top-4 text-[9px] text-[#C9A227] uppercase tracking-[0.2em] font-bold transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-[#C9A227]">
                 Vision de la Synergie
               </label>
             </div>
 
-            <div className="flex justify-center pt-10">
+            {/* Bouton Premium avec Animation Inversée Épurée */}
+            <div className="flex justify-center pt-8">
               <button 
                 type="submit"
-                className="group relative px-16 py-6 bg-mabe-gold text-mabe-dark font-sans font-black uppercase text-[10px] tracking-[0.4em] overflow-hidden transition-all duration-300 shadow-2xl"
+                className="group relative px-14 py-5 bg-[#1A1A1A] text-white font-bold uppercase text-[9px] tracking-[0.4em] overflow-hidden transition-all duration-400 rounded-sm shadow-sm hover:shadow-md"
               >
-                <span className="relative z-10">Soumettre le Projet</span>
-                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                <span className="relative z-10 group-hover:text-[#1A1A1A] transition-colors duration-400">Soumettre le Projet</span>
+                <div className="absolute inset-0 bg-[#C9A227] translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-out" />
               </button>
             </div>
           </form>
         </div>
       </section>
 
-      {/* FILIGRANE DESIGN XXL */}
-      <div className="absolute -bottom-20 -left-20 text-[20rem] font-sans font-black text-white/[0.01] pointer-events-none select-none uppercase tracking-tighter">
+      {/* FILIGRANE SOUVERAIN XXL BASE DE PAGE */}
+      <div className="absolute -bottom-16 -left-16 text-[18rem] font-black text-[#1A1A1A]/[0.015] pointer-events-none select-none uppercase tracking-tighter font-sans">
         Mabe
       </div>
 
     </div>
   );
-};
-
-export default Partenaire;
+}

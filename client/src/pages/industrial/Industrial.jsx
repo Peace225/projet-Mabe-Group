@@ -1,145 +1,93 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 const Industrial = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
-    <div className="bg-[#050505] min-h-screen pt-32 pb-24 relative overflow-hidden">
+    <div className="bg-[#fcfaf6] min-h-screen text-[#1a1a1a] font-sans">
       
-      {/* Background Glows */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-mabe-gold/5 blur-[150px] rounded-full -translate-y-1/2 -translate-x-1/3 pointer-events-none" />
+      {/* --- HERO SECTION --- */}
+      <section className="relative px-6 md:px-20 pt-40 pb-32">
+        <div className="max-w-7xl mx-auto border-l-2 border-[#C9A227] pl-10">
+          <h4 className="text-[#C9A227] uppercase tracking-[0.4em] text-[10px] mb-6 font-bold">Pôle Industriel</h4>
+          <h1 className="text-7xl md:text-9xl font-black uppercase tracking-tighter leading-[0.8] mb-12 text-[#1a1a1a]">
+            RUPAC & <br />
+            <span className="text-[#C9A227] italic font-light">NGIA FOOD</span>
+          </h1>
+          <p className="max-w-xl text-[#525252] text-lg leading-relaxed font-light">
+            L'innovation industrielle au service du développement durable. Nous transformons les ressources locales en solutions durables, alliant rigueur et excellence.
+          </p>
+        </div>
+      </section>
 
-      {/* --- HEADER / HERO SECTION --- */}
-      <section className="relative px-6 md:px-12 max-w-[90rem] mx-auto mb-32 z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-end">
-          
-          {/* Colonne Gauche : Titres */}
-          <div className="flex flex-col items-start relative pl-6 md:pl-10">
-            <div className="absolute left-0 top-2 bottom-2 w-[2px] bg-gradient-to-b from-mabe-gold to-transparent" />
-            
-            <h4 className="text-mabe-gold uppercase tracking-[0.4em] text-[10px] mb-6 font-sans font-semibold">
-              Pôle d'Expertise
-            </h4>
-            <h1 className="text-white font-sans font-black text-6xl md:text-7xl lg:text-8xl uppercase tracking-tighter leading-[0.9] mb-4">
-              Transformation <br />
-              <span className="text-white/40 font-light">Industrielle</span>
-            </h1>
-          </div>
-          
-          {/* Colonne Droite : Paragraphe (Descendu avec lg:pt-12) */}
-          <div className="flex flex-col lg:pb-4 lg:pt-12 space-y-10">
-            <p className="text-white/50 text-base md:text-xl leading-relaxed font-sans font-light tracking-wide max-w-xl">
-              L'ingénierie de pointe au service du développement souverain. Nous concevons et déployons des écosystèmes de production où la performance technologique rencontre l'excellence opérationnelle.
+      {/* --- RUPAC (Design BTP/Écologie) --- */}
+      <section className="px-6 md:px-20 py-24 bg-[#f4f2ee]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div>
+            <h2 className="text-6xl font-black uppercase tracking-tighter mb-4 text-[#1a1a1a]">RUPAC</h2>
+            <p className="italic text-[#C9A227] text-xl mb-6">"Du plastique à la pierre pour un monde plus vert."</p>
+            <p className="text-[#525252] mb-10 leading-relaxed">
+              Le pôle industriel spécialisé dans la valorisation des déchets plastiques transformés en matériaux de construction (pavés écologiques).
             </p>
-            
-            {/* DOUBLE CTA LUXE */}
-            <div className="flex flex-col sm:flex-row gap-5">
-              <Link 
-                to="/#contact" 
-                className="group relative inline-flex items-center justify-center px-10 py-5 bg-mabe-gold text-mabe-dark font-sans font-black uppercase text-[10px] tracking-[0.2em] overflow-hidden transition-all duration-300"
-              >
-                <span className="relative z-10">Consulter nos experts</span>
-                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              </Link>
-              
-              <Link 
-                to="/partenaire" 
-                className="group inline-flex items-center justify-center px-10 py-5 border border-white/10 text-white font-sans font-bold uppercase text-[10px] tracking-[0.2em] hover:border-mabe-gold hover:text-mabe-gold transition-all duration-500"
-              >
-                Devenir Fournisseur
-              </Link>
+            <div className="grid grid-cols-2 gap-4">
+              {['Recyclage Plastique', 'Pavés Écologiques', 'Solutions Env.', 'Valorisation'].map((item) => (
+                <div key={item} className="border border-[#e0e0e0] p-4 text-[10px] uppercase tracking-[0.2em] text-[#525252] bg-white">{item}</div>
+              ))}
             </div>
           </div>
-
-        </div>
-      </section>
-
-      {/* --- RESTE DU COMPOSANT (IDENTIQUE) --- */}
-      <section className="w-full h-[60vh] md:h-[70vh] mb-32 relative border-y border-white/5 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-fixed brightness-50 contrast-125 grayscale hover:grayscale-0 transition-all duration-[2.5s] ease-out scale-105"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070')" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-transparent to-[#050505]/60" />
-      </section>
-
-      <section className="max-w-[90rem] mx-auto px-6 mb-40 relative z-10">
-        <div className="flex flex-col items-start mb-24">
-          <h4 className="text-mabe-gold text-[10px] font-sans font-semibold uppercase tracking-[0.4em] mb-4">
-            Puissance Opérationnelle
-          </h4>
-          <h3 className="text-white text-4xl md:text-5xl lg:text-6xl font-sans font-black uppercase tracking-tighter leading-none">
-            Nos Entités <br/>
-            <span className="text-white/40 font-light">de Production</span>
-          </h3>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-          <div className="group relative p-12 md:p-16 bg-white/[0.02] border border-white/5 backdrop-blur-sm rounded-sm overflow-hidden transition-all duration-700 hover:-translate-y-2 hover:bg-white/[0.04] hover:border-mabe-gold/30 hover:shadow-[0_30px_60px_rgba(0,0,0,0.5)]">
-            <div className="absolute -top-10 -right-4 text-[12rem] font-sans font-black text-white/[0.02] group-hover:text-mabe-gold/5 transition-colors duration-700 pointer-events-none select-none">
-              01
-            </div>
-            <div className="relative z-10">
-              <h2 className="text-white text-4xl md:text-5xl font-sans font-black mb-6 tracking-tighter uppercase leading-none">
-                RUPAC
-              </h2>
-              <div className="h-[1px] w-16 bg-mabe-gold mb-10 group-hover:w-32 transition-all duration-500 ease-out" />
-              <p className="text-white/50 text-base md:text-xl leading-relaxed font-sans font-light mb-12">
-                L'avant-garde de la transformation industrielle. Nous intégrons des technologies disruptives pour moderniser les infrastructures et garantir une efficacité énergétique et productive de classe mondiale.
-              </p>
-              <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 text-mabe-gold text-[9px] font-sans font-bold uppercase tracking-[0.3em] rounded-full group-hover:bg-mabe-gold group-hover:text-mabe-dark transition-colors duration-500">
-                <span className="w-1.5 h-1.5 rounded-full bg-mabe-gold group-hover:bg-mabe-dark animate-pulse" />
-                Ingénierie Industrielle
-              </div>
-            </div>
-          </div>
-
-          <div className="group relative p-12 md:p-16 bg-white/[0.02] border border-white/5 backdrop-blur-sm rounded-sm overflow-hidden transition-all duration-700 hover:-translate-y-2 hover:bg-white/[0.04] hover:border-mabe-gold/30 hover:shadow-[0_30px_60px_rgba(0,0,0,0.5)]">
-            <div className="absolute -top-10 -right-4 text-[12rem] font-sans font-black text-white/[0.02] group-hover:text-mabe-gold/5 transition-colors duration-700 pointer-events-none select-none">
-              02
-            </div>
-            <div className="relative z-10">
-              <h2 className="text-white text-4xl md:text-5xl font-sans font-black mb-6 tracking-tighter uppercase leading-none">
-                NGIA FOOD
-              </h2>
-              <div className="h-[1px] w-16 bg-mabe-gold mb-10 group-hover:w-32 transition-all duration-500 ease-out" />
-              <p className="text-white/50 text-base md:text-xl leading-relaxed font-sans font-light mb-12">
-                La valorisation souveraine des ressources agro-alimentaires. À travers des standards de traçabilité et de sécurité alimentaire inflexibles, nous bâtissons l'indépendance nutritionnelle de demain.
-              </p>
-              <div className="inline-flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 text-mabe-gold text-[9px] font-sans font-bold uppercase tracking-[0.3em] rounded-full group-hover:bg-mabe-gold group-hover:text-mabe-dark transition-colors duration-500">
-                <span className="w-1.5 h-1.5 rounded-full bg-mabe-gold group-hover:bg-mabe-dark animate-pulse" />
-                Agro-Industrie Premium
-              </div>
-            </div>
+          {/* Image RUPAC */}
+          <div className="h-[500px] overflow-hidden border border-[#e0e0e0]">
+            <img src="/images/rupac.png" alt="RUPAC Production" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
           </div>
         </div>
       </section>
 
-      <section className="max-w-[90rem] mx-auto px-6 relative z-10">
-        <div className="relative p-12 md:p-24 bg-white/[0.02] border border-white/5 rounded-sm text-center overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-t from-mabe-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          <div className="relative z-10">
-            <h2 className="text-white font-sans font-black text-4xl md:text-5xl lg:text-6xl uppercase tracking-tighter mb-8 leading-[0.9]">
-              L'Industrie de demain <br/> <span className="text-mabe-gold font-light italic">s'écrit ici.</span>
-            </h2>
-            <p className="text-white/50 mb-12 font-sans font-light max-w-2xl mx-auto italic text-base md:text-lg leading-relaxed">
-              Propulsez vos capacités de production ou rejoignez notre réseau de distribution stratégique. L'excellence n'attend pas.
+      {/* --- BANDEAU IMAGE IMMERSIVE --- */}
+      <div className="w-full h-[40vh] overflow-hidden">
+        <img src="/images/food.jpg" alt="Industrial Excellence" className="w-full h-full object-cover grayscale opacity-80" />
+      </div>
+
+      {/* --- NGIA FOOD (Blanc épuré) --- */}
+      <section className="px-6 md:px-20 py-24 bg-[#fcfaf6]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          {/* Image NGIA FOOD */}
+          <div className="order-2 lg:order-1 h-[500px] overflow-hidden border border-[#e0e0e0]">
+            <img src="/images/ngia.png" alt="NGIA Food Transformation" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div className="order-1 lg:order-2">
+            <h2 className="text-6xl font-black uppercase tracking-tighter mb-4 text-[#1a1a1a]">NGIA FOOD</h2>
+            <p className="italic text-[#C9A227] text-xl mb-6">"L'innovation alimentaire moderne."</p>
+            <p className="text-[#525252] mb-10 leading-relaxed">
+              Solutions alimentaires pratiques et qualitatives. Nous transformons et distribuons des produits locaux avec une exigence absolue en matière d'hygiène.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <Link to="/#contact" className="inline-flex items-center justify-center px-12 py-5 bg-mabe-gold text-mabe-dark font-sans font-black uppercase text-[10px] tracking-[0.3em] hover:bg-white transition-all duration-300 shadow-2xl">
-                Évaluer votre projet
-              </Link>
-              <Link to="/partenaire" className="inline-flex items-center justify-center px-12 py-5 border border-white/10 text-white font-sans font-bold uppercase text-[10px] tracking-[0.3em] hover:border-mabe-gold hover:text-mabe-gold transition-all duration-500">
-                Opportunités d'Affaires
-              </Link>
-            </div>
+            <ul className="space-y-4 text-[#525252] text-sm uppercase tracking-[0.2em]">
+              <li>• Produits prêts à cuisiner</li>
+              <li>• Transformation & surgelés</li>
+              <li>• Distribution intégrée</li>
+            </ul>
           </div>
         </div>
       </section>
 
+      {/* --- INFOS CONTACT --- */}
+      <section className="px-6 md:px-20 py-32 border-t border-[#e0e0e0] bg-[#f4f2ee]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+          <div>
+            <h4 className="text-[#C9A227] text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">Localisation</h4>
+            <p className="text-2xl font-light text-[#1a1a1a]">Bangui, RCA</p>
+          </div>
+          <div>
+            <h4 className="text-[#C9A227] text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">Contact Direct</h4>
+            <p className="text-2xl font-light text-[#1a1a1a]">+236 74 38 67 38</p>
+            <p className="text-[#525252]">excellenciamabe@gmail.com</p>
+          </div>
+          <div>
+            <h4 className="text-[#C9A227] text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">Informations Légales</h4>
+            <p className="text-[#525252] text-sm">RCCM: RCBG2025B2905</p>
+            <p className="text-[#525252] text-sm">NIU: 2362025M38832R</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

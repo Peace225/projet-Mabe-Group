@@ -1,152 +1,89 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
-// 1. IMPORTATION DES IMAGES LOCALES
-// Ajuste les noms de fichiers selon ce que tu as dans ton dossier assets
-import photoDirecteur from '../../assets/directeur.jpg'; 
-// Si tu as d'autres photos, importe-les ici, sinon utilise le placeholder
-// import photoDAF from '../../assets/daf.jpg';
-
-const Equipe = () => {
+export default function Equipe() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const teamMembers = [
+  // --- DONNÉES ---
+  const leadership = [
+    { id: 1, name: "Mlle. Excellencia", role: "Directrice Générale", description: "Visionnaire stratégique, elle pilote l'expansion et l'excellence opérationnelle du Groupe MABE.", image: "/images/hero.jpeg", socials: { linkedin: "#", facebook: "#", twitter: "#" } },
+    { id: 2, name: "[Nom du DAF]", role: "Directeur Financier", description: "Garant de la solidité et de la transparence financière de nos investissements.", image: "/images/daf.jpg", socials: { linkedin: "#", facebook: "#" } },
+    { id: 3, name: "[Nom Dir. Marketing]", role: "Directeur Marketing", description: "Expert en stratégies d'influence et branding, il redéfinit l'image du Groupe.", image: "/images/marketing.jpg", socials: { linkedin: "#", facebook: "#", instagram: "#" } },
+    { id: 4, name: "[Nom Dir. Industriel]", role: "Directeur Industriel", description: "Ingénieur de formation, il optimise nos chaînes de valeur et solutions durables.", image: "/images/industriel.jpg", socials: { linkedin: "#" } },
+    { id: 5, name: "[Nom Dir. Commerce]", role: "Directeur Commerce", description: "Spécialiste du retail haut de gamme, il développe nos réseaux de distribution.", image: "/images/commerce.jpg", socials: { linkedin: "#", facebook: "#" } },
+    { id: 6, name: "[Nom RP]", role: "Relations Publiques", description: "Voix du Groupe MABE, elle gère nos relations avec les institutions et partenaires.", image: "/images/pr.jpg", socials: { linkedin: "#", facebook: "#", twitter: "#" } }
+  ];
+
+  const consultants = [
     {
-      id: 1,
-      name: "Mlle. Excellencia",
-      role: "Directrice Générale",
-      description: "Visionnaire stratégique, elle pilote l'expansion et l'excellence opérationnelle de l'ensemble du Groupe MABE à travers l'Afrique.",
-      image: photoDirecteur 
-    },
-    {
-      id: 2,
-      name: "[Nom du DAF]",
-      role: "Directeur Administratif et Financier",
-      description: "Garant de la solidité financière du groupe, il assure la rentabilité et la transparence de nos investissements multisectoriels.",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974" // À remplacer par import local
-    },
-    {
-      id: 3,
-      name: "[Nom du Dir. Marketing]",
-      role: "Directeur Pôle Marketing",
-      description: "Expert en stratégies d'influence et en branding de luxe, il redéfinit l'image de marque de nos partenaires.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976"
-    },
-    {
-      id: 4,
-      name: "[Nom du Dir. Industriel]",
-      role: "Directeur Pôle Industriel",
-      description: "Ingénieur de formation, il optimise les chaînes de valeur et implémente des solutions industrielles innovantes et durables.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974"
-    },
-    {
-      id: 5,
-      name: "[Nom du Dir. Commerce]",
-      role: "Directeur Pôle Commerce",
-      description: "Spécialiste du retail haut de gamme, il développe nos réseaux de distribution avec une exigence absolue sur l'expérience client.",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961"
-    },
-    {
-      id: 6,
-      name: "[Nom]",
-      role: "Responsable des Relations Publiques",
-      description: "Voix du Groupe MABE, elle gère les relations avec les institutions, la presse et nos partenaires stratégiques.",
-      image: "https://images.unsplash.com/photo-1598550874175-4d0ef436c909?q=80&w=1968"
+      id: 7,
+      name: "[Nom Consultant]",
+      role: "Consultant Innovation Tech & Dev Web",
+      description: "Expert en architecture digitale, il conçoit les écosystèmes web de demain pour accompagner notre transformation technologique.",
+      image: "/images/consultant.jpg",
+      socials: { linkedin: "#", facebook: "#", twitter: "#" }
     }
   ];
 
+  // --- FONCTION RENDU ICONES ---
+  const renderIcon = (platform) => {
+    const icons = {
+      linkedin: <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>,
+      facebook: <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg>,
+      twitter: <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>,
+      instagram: <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+    };
+    return icons[platform] || null;
+  };
+
   return (
-    <div className="bg-[#050505] min-h-screen pt-32 pb-24 relative overflow-hidden">
+    <div className="bg-[#FCFAF6] min-h-screen pt-40 pb-32">
       
-      {/* Background Glow */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-mabe-gold/5 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-
-      {/* --- SECTION HEADER --- */}
-      <section className="max-w-7xl mx-auto px-6 mb-32 text-center relative z-10">
-        <div className="w-[1px] h-16 bg-gradient-to-b from-transparent to-mabe-gold mx-auto mb-8" />
-        <h4 className="text-mabe-gold uppercase tracking-[0.4em] text-[10px] mb-6 font-sans font-semibold">
-          L'Excellence Humaine
-        </h4>
-        <h1 className="text-white font-sans font-black text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter leading-none mb-10">
-          Notre <span className="text-white/40 font-light">Équipe</span>
-        </h1>
-        <p className="text-white/50 max-w-2xl mx-auto text-sm md:text-base leading-relaxed font-sans font-light tracking-wide">
-          Le succès du Groupe MABE repose sur des femmes et des hommes d'exception. 
-          Découvrez les esprits brillants qui transforment notre vision en réalité.
-        </p>
-      </section>
-
-      {/* --- SECTION GRILLE DE L'ÉQUIPE --- */}
-      <section className="max-w-7xl mx-auto px-6 mb-40 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          
-          {teamMembers.map((member) => (
-            <div key={member.id} className="group flex flex-col bg-white/[0.02] border border-white/5 backdrop-blur-sm rounded-sm overflow-hidden transition-all duration-700 hover:-translate-y-2 hover:bg-white/[0.04] hover:border-mabe-gold/30">
-              
-              {/* IMAGE MEMBER */}
-              <div className="relative aspect-[3/4] overflow-hidden">
-                <div className="absolute inset-0 bg-[#050505]/20 group-hover:bg-transparent transition-all duration-700 z-10" />
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover grayscale brightness-90 contrast-110 group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105 transition-all duration-[1.5s] ease-out"
-                />
-              </div>
-
-              {/* INFOS MEMBER */}
-              <div className="p-10 flex flex-col flex-grow relative">
-                <div className="absolute top-0 left-10 right-10 h-[1px] bg-mabe-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
-                
-                <h3 className="text-white font-sans font-bold text-2xl uppercase tracking-tighter mb-2 group-hover:text-mabe-gold transition-colors duration-300">
-                  {member.name}
-                </h3>
-                <h4 className="text-mabe-gold uppercase tracking-[0.3em] text-[9px] font-sans font-black mb-6">
-                  {member.role}
-                </h4>
-                <div className="w-8 h-[1px] bg-white/10 mb-6 group-hover:w-16 transition-all duration-500" />
-                <p className="text-white/40 text-sm leading-relaxed font-sans font-light">
-                  {member.description}
-                </p>
-              </div>
+      {/* SECTION LEADERSHIP */}
+      <section className="max-w-7xl mx-auto px-6 mb-32">
+        <h2 className="text-[#1A1A1A] font-bold text-sm uppercase tracking-[0.4em] mb-16">Direction & Pôles</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {leadership.map(member => (
+            <div key={member.id} className="bg-white p-8 border border-[#1A1A1A]/5 shadow-sm hover:shadow-md transition-shadow">
+               <img src={member.image} alt={member.name} className="w-full h-64 object-cover mb-6 grayscale hover:grayscale-0 transition-all duration-500" />
+               <h3 className="text-xl font-bold uppercase">{member.name}</h3>
+               <p className="text-[#C9A227] text-[9px] uppercase tracking-widest font-bold mb-4">{member.role}</p>
+               <p className="text-gray-500 text-sm mb-4">{member.description}</p>
+               <div className="flex gap-3 mt-4">
+                  {Object.entries(member.socials).map(([platform, url]) => (
+                    <a key={platform} href={url} className="text-[#1A1A1A]/30 hover:text-[#C9A227]">{renderIcon(platform)}</a>
+                  ))}
+               </div>
             </div>
           ))}
-
         </div>
       </section>
 
-      {/* --- CTA SECTION --- */}
-      <section className="max-w-5xl mx-auto px-6 text-center relative z-10">
-        <div className="p-12 md:p-20 bg-white/[0.02] border border-white/5 rounded-sm relative overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-t from-mabe-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          
-          <h3 className="text-white font-sans font-black text-3xl md:text-5xl uppercase tracking-tighter mb-8 leading-none relative z-10">
-            Rejoindre <br/> <span className="text-mabe-gold font-light">l'Excellence</span>
-          </h3>
-          <p className="text-white/40 mb-12 font-sans font-light max-w-xl mx-auto italic relative z-10">
-            Vous partagez notre vision de l'excellence opérationnelle ? Nous sommes toujours à la recherche de nouveaux talents pour accompagner notre croissance.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
-            <Link 
-              to="/#contact" 
-              className="inline-flex items-center justify-center bg-mabe-gold text-mabe-dark px-12 py-5 uppercase tracking-[0.2em] text-[10px] font-sans font-black hover:bg-white transition-all duration-300"
-            >
-              Candidature Spontanée
-            </Link>
-            <Link 
-              to="/#partenaire" 
-              className="inline-flex items-center justify-center border border-white/20 px-12 py-5 text-white uppercase tracking-[0.2em] text-[10px] font-sans font-bold hover:border-mabe-gold hover:text-mabe-gold transition-all duration-300"
-            >
-              Devenir Partenaire
-            </Link>
+      {/* SECTION CONSULTANTS */}
+      <section className="max-w-7xl mx-auto px-6 mb-44">
+        <div className="border-t border-[#1A1A1A]/10 pt-16">
+          <h2 className="text-[#1A1A1A] font-bold text-sm uppercase tracking-[0.4em] mb-16 text-[#C9A227]">Expertises & Consultants</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {consultants.map((consultant) => (
+              <div key={consultant.id} className="group p-6 border border-[#1A1A1A]/5 hover:border-[#C9A227]/30 transition-all duration-500 bg-white">
+                <div className="w-16 h-16 mb-6 overflow-hidden rounded-full">
+                  <img src={consultant.image} alt={consultant.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0" />
+                </div>
+                <h3 className="text-[#1A1A1A] font-bold text-lg mb-1">{consultant.name}</h3>
+                <p className="text-[#C9A227] text-[9px] uppercase tracking-widest font-bold mb-4">{consultant.role}</p>
+                <p className="text-gray-400 text-xs leading-relaxed font-light mb-6">{consultant.description}</p>
+                <div className="flex gap-3">
+                  {Object.entries(consultant.socials).map(([platform, url]) => (
+                    <a key={platform} href={url} className="text-[#1A1A1A]/30 hover:text-[#C9A227] transition-colors">{renderIcon(platform)}</a>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-
+      
     </div>
   );
-};
-
-export default Equipe;
+}

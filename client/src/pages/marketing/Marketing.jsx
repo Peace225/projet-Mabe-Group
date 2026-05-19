@@ -1,153 +1,79 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
+const services = [
+  { title: "Consulting Stratégique", desc: "Audit et feuilles de route haute performance." },
+  { title: "Community Management", desc: "Animation et gestion d'image de marque." },
+  { title: "Gestion d'Influence", desc: "Partenariats exclusifs entre talents et marques." },
+  { title: "Production de Contenu", desc: "Direction artistique et création visuelle." },
+  { title: "Coaching Digital", desc: "Accompagnement personnalisé pour talents." },
+  { title: "Couverture Média", desc: "Gestion de visibilité événementielle." }
+];
 
 const Marketing = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
-    <div className="bg-[#050505] min-h-screen pt-32 pb-24 relative overflow-hidden">
+    <div className="bg-[#fcfaf6] min-h-screen text-[#171717]">
       
-      {/* Background Glows Subtils */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-mabe-gold/5 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-
-      {/* --- HEADER / HERO SECTION --- */}
-      <section className="relative px-6 md:px-12 max-w-[90rem] mx-auto mb-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-end">
-          <div className="flex flex-col items-start relative pl-6 md:pl-10">
-            {/* Ligne verticale de signature */}
-            <div className="absolute left-0 top-2 bottom-2 w-[2px] bg-gradient-to-b from-mabe-gold to-transparent" />
-            
-            <h4 className="text-mabe-gold uppercase tracking-[0.4em] text-[10px] mb-6 font-sans font-semibold">
-              Pôle d'Expertise
-            </h4>
-            <h1 className="text-white font-sans font-black text-6xl md:text-7xl lg:text-8xl uppercase tracking-tighter leading-[0.9] mb-4">
-              Marketing <br />
-              <span className="text-white/40 font-light italic">Digital</span>
+      {/* --- HERO SECTION --- */}
+      <section className="px-6 md:px-20 pt-32 pb-20 max-w-[1600px] mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start mb-20">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl">
+            <h4 className="text-[#C9A227] uppercase tracking-[0.4em] text-xs mb-8 font-bold">Pôle Stratégie & Influence</h4>
+            <h1 className="font-black text-8xl md:text-[10rem] uppercase tracking-tighter leading-[0.8] mb-12 text-[#171717]">
+              NGIA <br /> 
+              <span className="text-[#C9A227] italic font-light">Digital</span>
             </h1>
+          </motion.div>
+          <div className="mt-auto max-w-sm">
+            <p className="text-xl font-light italic text-[#525252] mb-8">"L'art d'orchestrer l'influence et de sublimer votre identité."</p>
+            <div className="h-[2px] w-20 bg-[#C9A227] mb-8" />
           </div>
-          
-          <div className="flex flex-col lg:pb-4 space-y-10">
-            <p className="text-white/50 text-base md:text-xl leading-relaxed font-sans font-light tracking-wide max-w-xl">
-              Cabinet de conseil et stratégie. Nous orchestrons l'influence et sublimons les talents pour propulser votre image de marque vers les sommets de l'élégance numérique.
-            </p>
-            
-            {/* DOUBLE CTA LUXE */}
-            <div className="flex flex-col sm:flex-row gap-5">
-              <Link 
-                to="/#contact" 
-                className="group relative inline-flex items-center justify-center px-10 py-5 bg-mabe-gold text-mabe-dark font-sans font-black uppercase text-[10px] tracking-[0.2em] overflow-hidden transition-all duration-300"
-              >
-                <span className="relative z-10">Lancer une campagne</span>
-                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              </Link>
-              
-              <Link 
-                to="/partenaire" 
-                className="group inline-flex items-center justify-center px-10 py-5 border border-white/10 text-white font-sans font-bold uppercase text-[10px] tracking-[0.2em] hover:border-mabe-gold hover:text-mabe-gold transition-all duration-500"
-              >
-                Rejoindre le réseau
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- IMAGE IMMERSIVE (PARALLAX EFFECT) --- */}
-      <section className="w-full h-[60vh] md:h-[70vh] mb-32 relative border-y border-white/5 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-fixed brightness-50 contrast-125 grayscale hover:grayscale-0 transition-all duration-[2.5s] ease-out scale-105"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074')" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-transparent to-[#050505]/60" />
-      </section>
-
-      {/* --- LES AXES D'EXPERTISE --- */}
-      <section className="max-w-[90rem] mx-auto px-6 mb-40">
-        <div className="flex flex-col items-start mb-24">
-          <h4 className="text-mabe-gold text-[10px] font-sans font-semibold uppercase tracking-[0.4em] mb-4">
-            Ingénierie Créative
-          </h4>
-          <h3 className="text-white text-4xl md:text-5xl lg:text-6xl font-sans font-black uppercase tracking-tighter leading-none">
-            Nos Domaines <br/>
-            <span className="text-white/40 font-light">d'Intervention</span>
-          </h3>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-          
-          {/* AXE 1 : Conseil & Stratégie */}
-          <div className="group relative pt-12 border-t border-white/10 hover:border-mabe-gold transition-colors duration-700">
-            <span className="absolute top-8 right-0 text-6xl font-sans font-black text-white/[0.03] group-hover:text-mabe-gold/10 transition-colors duration-700">01</span>
-            <h4 className="text-white font-sans font-bold text-xl uppercase tracking-widest mb-6 group-hover:text-mabe-gold transition-colors">
-              Conseil & Stratégie
-            </h4>
-            <div className="w-8 h-[1px] bg-mabe-gold mb-6 group-hover:w-16 transition-all duration-500" />
-            <p className="text-white/40 leading-relaxed text-sm font-sans font-light">
-              Audit de positionnement et définition de KPIs haute performance. Nous élaborons des feuilles de route stratégiques pour dominer votre écosystème numérique.
-            </p>
-          </div>
-          
-          {/* AXE 2 : Gestion de Talents */}
-          <div className="group relative pt-12 border-t border-white/10 hover:border-mabe-gold transition-colors duration-700">
-            <span className="absolute top-8 right-0 text-6xl font-sans font-black text-white/[0.03] group-hover:text-mabe-gold/10 transition-colors duration-700">02</span>
-            <h4 className="text-white font-sans font-bold text-xl uppercase tracking-widest mb-6 group-hover:text-mabe-gold transition-colors">
-              Gestion de Talents
-            </h4>
-            <div className="w-8 h-[1px] bg-mabe-gold mb-6 group-hover:w-16 transition-all duration-500" />
-            <p className="text-white/40 leading-relaxed text-sm font-sans font-light">
-              Management d'influenceurs premium. Nous orchestrons des campagnes d'influence authentiques pour convertir la notoriété en impact transactionnel.
-            </p>
-          </div>
-
-          {/* AXE 3 : Identité Visuelle & Branding */}
-          <div className="group relative pt-12 border-t border-white/10 hover:border-mabe-gold transition-colors duration-700">
-            <span className="absolute top-8 right-0 text-6xl font-sans font-black text-white/[0.03] group-hover:text-mabe-gold/10 transition-colors duration-700">03</span>
-            <h4 className="text-white font-sans font-bold text-xl uppercase tracking-widest mb-6 group-hover:text-mabe-gold transition-colors">
-              Branding & Identité
-            </h4>
-            <div className="w-8 h-[1px] bg-mabe-gold mb-6 group-hover:w-16 transition-all duration-500" />
-            <p className="text-white/40 leading-relaxed text-sm font-sans font-light">
-              Conception d'assets marketing "Haute Couture". Une sélection typographique et graphique exigeante pour une présence visuelle d'exception.
-            </p>
-          </div>
-
+        <div className="w-full h-[60vh] bg-[#171717] overflow-hidden">
+          <img src="/images/digital.jpg" alt="NGIA Digital" className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-[2s] hover:scale-105" />
         </div>
       </section>
 
-      {/* --- SECTION CTA FINALE (AMÉLIORÉE) --- */}
-      <section className="max-w-[90rem] mx-auto px-6">
-        <div className="relative p-12 md:p-24 bg-white/[0.02] border border-white/5 rounded-sm text-center overflow-hidden group">
-          {/* Lueur de fond au survol */}
-          <div className="absolute inset-0 bg-gradient-to-t from-mabe-gold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          
-          <div className="relative z-10">
-            <h2 className="text-white font-sans font-black text-4xl md:text-5xl lg:text-6xl uppercase tracking-tighter mb-8 leading-[0.9]">
-              Prêt à redéfinir <br/> <span className="text-mabe-gold font-light">votre image ?</span>
-            </h2>
-            <p className="text-white/50 mb-12 font-sans font-light max-w-2xl mx-auto italic text-base md:text-lg leading-relaxed">
-              Confiez-nous l'architecture de votre stratégie et le déploiement de vos campagnes d'influence. Ensemble, bâtissons l'incontournable.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <Link 
-                to="/#contact" 
-                className="inline-flex items-center justify-center px-12 py-5 bg-mabe-gold text-mabe-dark font-sans font-black uppercase text-[10px] tracking-[0.3em] hover:bg-white transition-all duration-300 shadow-2xl"
-              >
-                Démarrer un projet
-              </Link>
-              <Link 
-                to="/partenaire" 
-                className="inline-flex items-center justify-center px-12 py-5 border border-white/10 text-white font-sans font-bold uppercase text-[10px] tracking-[0.3em] hover:border-mabe-gold hover:text-mabe-gold transition-all duration-500"
-              >
-                Devenir Partenaire
-              </Link>
-            </div>
-          </div>
+      {/* --- ABOUT SECTION --- */}
+      <section className="px-6 md:px-20 py-20 bg-[#171717] text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-black uppercase mb-10 text-[#C9A227]">Cabinet de stratégie & marketing digital</h2>
+          <p className="text-lg text-gray-300 font-light leading-relaxed">
+            NGIA DIGITAL accompagne les marques et talents dans leur conquête numérique. 
+            Nous transformons votre visibilité en actif transactionnel avec une précision chirurgicale.
+          </p>
         </div>
       </section>
 
+      {/* --- SERVICES GRID --- */}
+      <section className="px-6 md:px-20 py-32 max-w-[1600px] mx-auto">
+        <h3 className="text-xs uppercase tracking-[0.3em] mb-20 text-[#a3a3a3]">Nos expertises</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-[#e5e5e5]">
+          {services.map((s, i) => (
+            <motion.div 
+              key={i} 
+              whileHover={{ backgroundColor: "#C9A227", color: "#000" }} 
+              className="p-12 border-r border-b border-[#e5e5e5] transition-colors duration-500 group"
+            >
+              <span className="text-[#C9A227] text-xs mb-8 block group-hover:text-[#000]">0{i + 1}</span>
+              <h4 className="text-2xl font-bold uppercase mb-6">{s.title}</h4>
+              <p className="font-light opacity-70 group-hover:opacity-100">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* --- CALL TO ACTION --- */}
+      <section className="px-6 md:px-20 py-32 text-center border-t border-[#e5e5e5]">
+        <h2 className="text-6xl md:text-8xl font-black uppercase mb-16 text-[#171717]">Propulsons votre image</h2>
+        <Link to="/#contact" className="inline-block px-16 py-8 bg-[#C9A227] text-[#000] hover:bg-[#171717] hover:text-[#C9A227] transition-all duration-300 font-bold uppercase tracking-[0.2em] text-lg">
+          Démarrer un projet
+        </Link>
+      </section>
     </div>
   );
 };

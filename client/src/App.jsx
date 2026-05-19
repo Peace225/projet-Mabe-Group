@@ -7,7 +7,8 @@ import Footer from './components/layout/Footer';
 import Home from './pages/home/Home';
 import Marketing from './pages/marketing/Marketing';
 import Industrial from './pages/industrial/Industrial';
-import Commerce from './pages/commerce/Commerce';
+import NgiaFood from './pages/industrial/NgiaFood';
+import Immobilier from './pages/immobilier/Immobilier';
 import APropos from './pages/about/APropos';
 import VisionMission from './pages/about/VisionMission';
 import MotDirecteur from "./pages/about/MotDirectrice";
@@ -61,7 +62,8 @@ function App() {
           <Route path="/vision-mission" element={<VisionMission />} />
           <Route path="/marketing" element={<Marketing />} />
           <Route path="/industrial" element={<Industrial />} />
-          <Route path="/commerce" element={<Commerce />} />
+          <Route path="/ngiafood" element={<NgiaFood />} />
+          <Route path="/immobilier" element={<Immobilier />} />
           <Route path="/mot-directeur" element={<MotDirecteur />} />
           <Route path="/news/event" element={<EventPage />} />
           <Route path="/equipe" element={<Equipe />} />

@@ -20,42 +20,42 @@ const ArrowRight = () => (
   </svg>
 );
 
-// Ajout des images (avatars) pour chaque témoin
+// Données avec les chemins d'images relocalisés dans public/images/
 const testimonialsData = [
   {
     id: 1,
     quote: "L'approche stratégique de Mabe Group a complètement redéfini notre positionnement sur le marché ouest-africain. Leur niveau d'exigence est incomparable.",
     author: "Jean-Marc Kouamé",
     role: "Directeur Général, TechAfrica",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200&h=200"
+    image: "/images/avatar1.jpg"
   },
   {
     id: 2,
     quote: "Une synergie parfaite entre le pôle industriel et marketing. Ils n'ont pas seulement exécuté un projet, ils ont élevé la vision globale de notre entreprise.",
     author: "Sarah El-Hajj",
     role: "CEO, Horizon Logistics",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200"
+    image: "/images/avatar2.jpg"
   },
   {
     id: 3,
     quote: "Leur maîtrise des rouages du négoce international et leur réactivité en font un partenaire stratégique de premier plan. L'excellence n'est pas qu'un mot pour eux.",
     author: "Philippe Laurent",
     role: "VP Opérations, Global Trade Corp",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200"
+    image: "/images/avatar3.jpg"
   },
   {
     id: 4,
     quote: "Des solutions digitales d'une élégance rare, couplées à une exécution technique sans faille. Un véritable catalyseur de croissance.",
     author: "Amina Diallo",
     role: "Directrice Marketing, Innova Bank",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200"
+    image: "/images/avatar4.jpg"
   },
   {
     id: 5,
     quote: "L'équipe de Mabe a su capturer l'essence de notre marque et la traduire en une identité forte et pérenne. Du grand art.",
     author: "Thomas Dubois",
     role: "Fondateur, Premium Retail",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200&h=200"
+    image: "/images/avatar5.jpg"
   }
 ];
 
@@ -75,9 +75,8 @@ export default function Testimonials() {
     }
   };
 
-  // EFFET : Défilement automatique
+  // Défilement automatique
   useEffect(() => {
-    // Si la souris est sur le slider, on met en pause l'auto-play
     if (isHovered) return;
 
     const interval = setInterval(() => {
@@ -86,64 +85,50 @@ export default function Testimonials() {
         const maxScroll = current.scrollWidth - current.clientWidth;
         const scrollAmount = current.firstElementChild.clientWidth + 32;
 
-        // Si on a atteint la fin, on retourne au début doucement
         if (current.scrollLeft >= maxScroll - 10) {
           current.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
-          // Sinon, on avance d'une carte
           current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
       }
-    }, 3500); // Défilement toutes les 3.5 secondes
+    }, 4000);
 
-    // Nettoyage de l'intervalle
     return () => clearInterval(interval);
   }, [isHovered]);
 
   return (
-    <section className="py-32 relative overflow-hidden border-t border-white/5">
+    <section className="py-36 bg-[#FCFAF6] relative overflow-hidden border-t border-[#1A1A1A]/5 text-[#1A1A1A] antialiased">
       
-      {/* 1. IMAGE DE FOND */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
-        style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80')" 
-        }}
-      />
-
-      {/* 2. OVERLAY */}
-      <div className="absolute inset-0 bg-[#050505]/90 pointer-events-none" />
-
-      {/* Lumières d'ambiance */}
-      <div className="absolute top-0 left-1/2 w-[800px] h-[500px] bg-mabe-gold/10 blur-[150px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+      {/* Lumières d'ambiance organiques et diffuses */}
+      <div className="absolute top-0 left-1/2 w-[800px] h-[500px] bg-[#C9A227]/4 blur-[160px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-multiply" />
       
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         
-        {/* En-tête de Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 border-b border-white/10 pb-8">
+        {/* En-tête de Section épuré */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 border-b border-[#1A1A1A]/5 pb-8">
           <div className="relative pl-6">
-            <div className="absolute left-0 top-1 bottom-1 w-[2px] bg-gradient-to-b from-mabe-gold to-transparent" />
-            <h4 className="text-mabe-gold text-[10px] font-sans font-semibold uppercase tracking-[0.4em] mb-4">
+            <div className="absolute left-0 top-1 bottom-1 w-[2px] bg-gradient-to-b from-[#C9A227] to-transparent" />
+            <span className="text-[#C9A227] text-[10px] font-bold uppercase tracking-[0.5em] mb-4 block">
               Confiance & Réputation
-            </h4>
-            <h2 className="text-4xl md:text-5xl font-sans font-black text-white tracking-tighter uppercase leading-none drop-shadow-lg">
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black text-[#1A1A1A] tracking-tighter uppercase leading-none">
               L'Excellence <br/>
-              <span className="text-white/60 font-light">Reconnue</span>
+              <span className="text-gray-300 font-light font-serif italic lowercase">r</span>econnue
             </h2>
           </div>
 
-          {/* Boutons de navigation manuelle */}
-          <div className="flex items-center gap-4">
+          {/* Boutons de navigation stylisés */}
+          <div className="flex items-center gap-3">
             <button 
               onClick={() => scroll('left')}
-              className="w-12 h-12 rounded-full border border-white/20 bg-black/20 backdrop-blur-md flex items-center justify-center text-white/70 hover:text-mabe-dark hover:bg-mabe-gold hover:border-mabe-gold transition-all duration-300 focus:outline-none"
+              className="w-12 h-12 rounded-full border border-[#1A1A1A]/10 bg-white shadow-sm flex items-center justify-center text-[#1A1A1A]/60 hover:text-white hover:bg-[#1A1A1A] hover:border-[#1A1A1A] transition-all duration-400 focus:outline-none"
               aria-label="Témoignage précédent"
             >
               <ArrowLeft />
             </button>
             <button 
               onClick={() => scroll('right')}
-              className="w-12 h-12 rounded-full border border-white/20 bg-black/20 backdrop-blur-md flex items-center justify-center text-white/70 hover:text-mabe-dark hover:bg-mabe-gold hover:border-mabe-gold transition-all duration-300 focus:outline-none"
+              className="w-12 h-12 rounded-full border border-[#1A1A1A]/10 bg-white shadow-sm flex items-center justify-center text-[#1A1A1A]/60 hover:text-white hover:bg-[#1A1A1A] hover:border-[#1A1A1A] transition-all duration-400 focus:outline-none"
               aria-label="Témoignage suivant"
             >
               <ArrowRight />
@@ -151,42 +136,44 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* PISTE DU SLIDER avec événements Hover pour la pause auto-play */}
+        {/* PISTE DU SLIDER */}
         <div 
           ref={scrollRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          className="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {testimonialsData.map((testimonial) => (
             <div 
               key={testimonial.id}
-              className="min-w-full sm:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-21px)] snap-start group relative p-10 md:p-12 bg-white/[0.03] border border-white/10 backdrop-blur-md rounded-sm transition-all duration-700 hover:-translate-y-2 hover:bg-white/[0.06] hover:border-mabe-gold/40 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)] flex flex-col"
+              className="min-w-full sm:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-22px)] snap-start group relative p-10 md:p-12 bg-white border border-[#1A1A1A]/5 shadow-[0_15px_40px_rgba(0,0,0,0.015)] rounded-sm transition-all duration-700 hover:-translate-y-2 hover:border-[#C9A227]/30 hover:shadow-[0_25px_60px_rgba(0,0,0,0.03)] flex flex-col"
             >
-              {/* Grand guillemet en filigrane */}
-              <QuoteIcon className="absolute top-8 right-8 w-16 h-16 text-white/10 group-hover:text-mabe-gold/20 transition-colors duration-700 pointer-events-none transform group-hover:scale-110 group-hover:rotate-6" />
+              {/* Grand guillemet d'arrière-plan minimaliste */}
+              <QuoteIcon className="absolute top-8 right-8 w-14 h-14 text-gray-100 group-hover:text-[#C9A227]/10 transition-colors duration-700 pointer-events-none transform group-hover:scale-105 group-hover:rotate-3" />
               
-              {/* Texte du témoignage */}
-              <p className="text-white/80 font-sans font-light text-lg leading-relaxed mb-10 relative z-10 flex-grow italic drop-shadow-md">
+              {/* Texte du témoignage (Éditorial & Aéré) */}
+              <p className="text-[#525252] font-light text-base md:text-lg leading-relaxed mb-12 relative z-10 flex-grow tracking-wide">
                 "{testimonial.quote}"
               </p>
               
-              {/* Auteur, Image et Ligne décorative */}
-              <div className="relative z-10 mt-auto pt-6 border-t border-white/10 group-hover:border-mabe-gold/40 transition-colors duration-500 flex items-center gap-4">
+              {/* Profil & Signature */}
+              <div className="relative z-10 mt-auto pt-6 border-t border-[#1A1A1A]/5 group-hover:border-[#C9A227]/20 transition-colors duration-500 flex items-center gap-4">
                 
-                {/* Photo de profil (Avatar) */}
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.author} 
-                  className="w-12 h-12 rounded-full object-cover border border-white/20 group-hover:border-mabe-gold transition-colors duration-300 shrink-0"
-                />
+                {/* Avatar avec focus strict en haut pour préserver les visages */}
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-[#1A1A1A]/5 bg-gray-50 flex-shrink-0 group-hover:border-[#C9A227] transition-colors duration-300">
+                  <img 
+                    src={testimonial.image} 
+                    alt={testimonial.author} 
+                    className="w-full h-full object-cover object-top filter grayscale contrast-105"
+                  />
+                </div>
                 
                 {/* Identité */}
                 <div>
-                  <h4 className="text-white font-sans font-bold text-base mb-1 group-hover:text-mabe-gold transition-colors duration-300 drop-shadow-md leading-tight">
+                  <h4 className="text-[#1A1A1A] font-bold text-sm mb-0.5 group-hover:text-[#C9A227] transition-colors duration-300 tracking-wide leading-tight">
                     {testimonial.author}
                   </h4>
-                  <p className="text-white/50 font-sans text-[10px] uppercase tracking-widest font-semibold drop-shadow-md">
+                  <p className="text-gray-400 font-medium text-[9px] uppercase tracking-widest">
                     {testimonial.role}
                   </p>
                 </div>

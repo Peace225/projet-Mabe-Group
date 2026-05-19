@@ -1,182 +1,139 @@
 import React, { useState, useEffect } from 'react';
-import Button from '../ui/Button';
 
-// --- CONFIGURATION PREMIUM DES SLIDES ---
 const heroSlides = [
-  {
-    id: 0,
-    subtitle: "L'Excellence sans compromis",
-    title1: "Excellencia",
-    title2: "Mabe Group",
-    img: "/images/hero1.jpg", 
-    cta1: { text: "Découvrir notre Vision", link: "#about" },
-    cta2: { text: "Nos Pôles d'Expertise", link: "#poles" },
-    cta3: { text: "Devenir Partenaire", link: "/#partenaire" }
-  },
-  {
-    id: 1,
-    subtitle: "Influence & Rayonnement",
-    title1: "Marketing",
-    title2: "Digital",
-    img: "/images/hero2.jpg", 
-    cta1: { text: "Explorer l'Agence", link: "/marketing" },
-    cta2: { text: "Initier un Projet", link: "/#contact" },
-    cta3: { text: "Voir nos Réalisations", link: "/marketing#portfolio" }
-  },
-  {
-    id: 2,
-    subtitle: "Synergie & Déploiement Global",
-    title1: "Industrie &",
-    title2: "Commerce",
-    img: "/images/hero-3.jpg", 
-    cta1: { text: "Solutions Industrielles", link: "/industrial" },
-    cta2: { text: "Négoce International", link: "/commerce" },
-    cta3: { text: "Nous Consulter", link: "/#contact" }
-  },
-  {
-    id: 3,
-    subtitle: "Réseau B2B & B2C Connecté",
-    title1: "Mabe",
-    title2: "Marketplace",
-    img: "/images/hero-marketplace.jpg", 
-    cta1: { text: "Vendre vos Produits", link: "/marketplace/vendre" },
-    cta2: { text: "Acheter en Gros", link: "/marketplace/acheter" },
-    cta3: { text: "Visiter la Plateforme", link: "/marketplace" }
-  }
+  { id: 0, img: "/images/hero.jpeg" },
+];
+
+const logos = [
+  { id: 'ngia', src: '/images/digital.jpg', link: '/marketing' },
+  { id: 'rupac', src: '/images/rupac.png', link: '/industrial' },
+  { id: 'food', src: '/images/ngia.png', link: '/ngiafood' },
+  { id: 'immobilier', src: '/images/logo.png', link: '/immobilier' },
 ];
 
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Temps allongé à 6 secondes pour un effet plus contemplatif et luxueux
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1));
-    }, 6000); 
+    }, 6000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleMouse = (e) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      });
+    };
+    window.addEventListener('mousemove', handleMouse);
+    return () => window.removeEventListener('mousemove', handleMouse);
   }, []);
 
   return (
     <section className="relative h-[100dvh] w-full overflow-hidden bg-[#0a0a0a]">
       {heroSlides.map((slide, index) => {
         const isActive = currentSlide === index;
-
         return (
-          <div 
+          <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
-              isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+            className={`absolute inset-0 transition-opacity duration-[2000ms] ${
+              isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
             }`}
           >
-            <img 
-              src={slide.img}
-              alt={slide.title1}
-              className={`absolute inset-0 w-full h-full object-contain md:object-cover object-center transition-transform duration-[10000ms] ease-out ${
-                isActive ? 'scale-100 md:scale-105' : 'scale-100'
-              }`}
-            />
-            
-            {/* CORRECTION : OPACITÉ RÉDUITE
-              1. Le dégradé principal passe de opacity-90 à opacity-50 (beaucoup plus transparent)
-              2. Le fond noir plat (backdrop) passe de bg-black/10 à bg-black/0 (totalement transparent, on garde juste le léger flou)
-              Si le texte devient illisible sur certaines photos claires, tu pourras remonter 'opacity-50' à 'opacity-60'.
-            */}
-            <div className="absolute inset-0 bg-gradient-to-t from-mabe-dark via-mabe-dark/30 to-transparent opacity-50" />
-            <div className="absolute inset-0 bg-black/0 backdrop-blur-[1px]" />
-            
-            {/* --- CONTENU & ANIMATIONS EN CASCADE --- */}
-            <div className="absolute inset-0 flex items-center justify-center text-center px-6">
-              <div className="relative z-20 max-w-5xl w-full flex flex-col items-center">
-                
-                {/* Ligne & Sous-titre */}
-                <div className={`flex flex-col items-center gap-4 mb-6 transition-all duration-1000 delay-300 ${
-                  isActive ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                }`}>
-                  <div className="w-[1px] h-12 bg-gradient-to-b from-transparent to-mabe-gold" />
-                  <h2 className="text-mabe-gold tracking-[0.4em] md:tracking-[0.6em] uppercase text-[9px] md:text-xs font-medium font-sans drop-shadow-md">
-                    {slide.subtitle}
-                  </h2>
-                </div>
-
-                {/* Titre Principal XXL */}
-                <h1 className={`text-white font-sans font-black text-5xl sm:text-6xl md:text-8xl lg:text-[7.5rem] mb-12 tracking-tighter uppercase leading-[0.9] drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] transition-all duration-1000 delay-500 ${
-                  isActive ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                }`}>
-                  {slide.title1} <br className="hidden sm:block" /> 
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-mabe-gold via-yellow-300 to-mabe-gold italic font-light pr-4 drop-shadow-none">
-                    {slide.title2}
-                  </span>
-                </h1>
-                
-                {/* Actions (Boutons) */}
-                <div className={`flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 justify-center items-center w-full transition-all duration-1000 delay-700 ${
-                  isActive ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                }`}>
-                  <a href={slide.cta1.link} className="w-full sm:w-auto">
-                    <Button variant="primary" className="w-full px-10 py-4 font-sans shadow-[0_0_20px_rgba(212,175,55,0.15)] hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-shadow">
-                      {slide.cta1.text}
-                    </Button>
-                  </a>
-                  
-                  <a href={slide.cta2.link} className="w-full sm:w-auto">
-                    <Button variant="outline" className="w-full px-10 py-4 font-sans backdrop-blur-md border-white/40 hover:border-mabe-gold bg-black/10">
-                      {slide.cta2.text}
-                    </Button>
-                  </a>
-
-                  {/* Lien tertiaire */}
-                  <a 
-                    href={slide.cta3.link} 
-                    className="group flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white hover:text-mabe-gold transition-colors duration-300 mt-4 sm:mt-0 sm:ml-4 font-sans font-medium drop-shadow-md"
-                  >
-                    <span className="border-b border-transparent group-hover:border-mabe-gold pb-1 transition-all duration-300">
-                      {slide.cta3.text}
-                    </span>
-                    <svg className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
-                </div>
-
-              </div>
+            {/* Parallax Container */}
+            <div
+              className="absolute inset-0 will-change-transform"
+              style={{
+                transform: `translate(${mousePos.x * -0.3}px, ${mousePos.y * -0.3}px) scale(1.1)`,
+              }}
+            >
+              <img
+                src={slide.img}
+                alt="Slide"
+                className={`w-full h-full object-cover transition-transform duration-[15000ms] ease-out ${
+                  isActive ? 'scale-110' : 'scale-100'
+                }`}
+                style={{ objectPosition: '50% 35%' }}
+              />
             </div>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.8)_100%)]" />
           </div>
         );
       })}
 
-      {/* --- INDICATEURS DE NAVIGATION PREMIUM --- */}
-      <div className="absolute bottom-10 left-0 right-0 z-30 flex justify-center items-center gap-4">
-        {heroSlides.map((_, index) => {
-          const isActive = currentSlide === index;
-          return (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              aria-label={`Aller au slide ${index + 1}`}
-              className="py-4 px-1 focus:outline-none group flex items-center"
+      {/* CONTENU */}
+      <div className="relative z-20 h-full flex flex-col items-center justify-center text-white px-6">
+        <div className="text-center mb-16">
+          <div className="overflow-hidden">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 uppercase tracking-[0.12em]">
+              <span className="inline-block animate-[slideUp_1s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">Excellencia</span>
+              <span className="inline-block ml-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-[#C9A227] to-white animate-[slideUp_1s_cubic-bezier(0.16,1,0.3,1)_0.4s_both,shimmer_3s_linear_infinite] bg-[length:200%_100%]">Mabe</span>
+            </h1>
+          </div>
+
+          <div className="overflow-hidden">
+            <p className="text-sm md:text-base font-light tracking-[0.5em] uppercase opacity-80 border-t border-white/20 pt-4 inline-block animate-[slideUp_1s_cubic-bezier(0.16,1,0.3,1)_0.6s_both]">
+              Bienvenue dans notre écosystème
+            </p>
+          </div>
+
+          <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#C9A227] to-transparent mx-auto mt-8 animate-[expand_1.5s_ease-out_0.8s_both]" />
+        </div>
+
+        {/* LOGOS */}
+        <div className="flex flex-wrap justify-center items-center gap-5 md:gap-10">
+          {logos.map((logo, idx) => (
+            <a
+              key={logo.id}
+              href={logo.link}
+              className="group relative"
             >
-              <div className={`relative h-[2px] transition-all duration-700 ease-in-out ${
-                isActive ? 'w-16 bg-white/40' : 'w-6 bg-white/20 group-hover:bg-white/50 group-hover:w-8'
-              }`}>
-                {/* Barre de progression interne fluide */}
-                {isActive && (
-                  <div 
-                    className="absolute top-0 left-0 h-full bg-mabe-gold transition-all duration-[6000ms] ease-linear"
-                    style={{ width: '100%' }}
+              <div className="absolute -inset-4 bg-[#C9A227]/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+              <div className="relative transform-gpu transition-all duration-700 group-hover:-translate-y-3 group-hover:rotate-[-2deg] animate-[fadeInUp_0.8s_ease-out_both]"
+                style={{ animationDelay: `${800 + idx * 120}ms` }}
+              >
+                <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                </div>
+
+                <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 group-hover:border-[#C9A227]/50 rounded-2xl p-3 md:p-4 shadow-[0_8px_32px_rgba(0,0,0,0.4)] group-hover:shadow-[0_20px_60px_rgba(201,162,39,0.25)] transition-all duration-500">
+                  <img
+                    src={logo.src}
+                    alt={logo.id}
+                    className="h-14 md:h-20 w-auto object-contain transition-all duration-500 group-hover:scale-110 filter brightness-90 group-hover:brightness-110"
                   />
-                )}
+                </div>
               </div>
-            </button>
-          );
-        })}
+            </a>
+          ))}
+        </div>
       </div>
 
-      {/* --- FILIGRANE ARRIÈRE-PLAN --- */}
-      <div className="absolute bottom-0 right-4 z-20 hidden md:block select-none pointer-events-none">
-        <span className="text-white/[0.03] font-sans text-[12rem] leading-none tracking-tighter uppercase font-black">
-          Mabe
-        </span>
-      </div>
+      <style jsx>{`
+        @keyframes slideUp {
+          from { transform: translateY(100%); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeInUp {
+          from { transform: translateY(30px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        @keyframes expand {
+          from { width: 0; opacity: 0; }
+          to { width: 6rem; opacity: 1; }
+        }
+      `}</style>
     </section>
   );
 }
