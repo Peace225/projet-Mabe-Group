@@ -3,14 +3,10 @@ import { X, ArrowRight } from 'lucide-react';
 
 const NewsletterPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [email, setEmail] = useState('');
   const [isSubmited, setIsSubmited] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const hasJoined = localStorage.getItem('mabe_newsletter_joined');
-      if (!hasJoined) setIsOpen(true);
-    }, 5000);
+    const timer = setTimeout(() => !localStorage.getItem('mabe_newsletter_joined') && setIsOpen(true), 5000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -24,56 +20,42 @@ const NewsletterPopup = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-neutral-900/20 backdrop-blur-sm transition-all duration-700">
-      
-      {/* Conteneur Lumineux */}
-      <div className="relative w-full max-w-lg bg-[#FCFAF6] border border-neutral-200 p-12 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.1)] animate-in fade-in zoom-in duration-700">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-neutral-900/20 backdrop-blur-sm">
+      {/* 
+         - aspect-square : force le carré sur mobile
+         - md:aspect-auto : annule le carré sur desktop
+         - flex flex-col justify-center : permet de centrer le contenu verticalement dans le carré
+      */}
+      <div className="relative w-full max-w-[300px] aspect-square md:aspect-auto md:max-w-sm bg-[#FCFAF6] border border-neutral-200 p-6 md:p-10 shadow-2xl animate-in fade-in zoom-in duration-700 flex flex-col justify-center">
         
-        {/* Bouton Fermer */}
-        <button 
-          onClick={() => setIsOpen(false)}
-          className="absolute top-8 right-8 text-neutral-400 hover:text-neutral-900 transition-colors"
-        >
-          <X className="w-4 h-4" />
+        <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-900">
+          <X className="w-3 h-3 md:w-4 md:h-4" />
         </button>
 
         {!isSubmited ? (
-          <div className="flex flex-col text-center">
-            <span className="text-[9px] uppercase tracking-[0.4em] text-neutral-400 mb-6 font-medium">
-              EXCELENCIA MABE Group
-            </span>
+          <form onSubmit={handleSubmit} className="flex flex-col text-center">
+            <span className="text-[7px] md:text-[9px] uppercase tracking-[0.2em] text-neutral-400 mb-4">Excellencia Mabe Group</span>
             
-            <h2 className="text-3xl font-light text-neutral-900 uppercase tracking-tight mb-4">
-              L'Excellence <br/>
-              <span className="font-bold text-[#C9A227]">en avant-première</span>
+            <h2 className="text-lg md:text-2xl font-light text-neutral-900 uppercase mb-5 leading-tight">
+              L'Excellence <span className="font-bold text-[#C9A227] block">en avant-première</span>
             </h2>
-
-            <p className="text-neutral-500 text-sm font-light leading-relaxed mb-10 max-w-sm mx-auto">
-              Recevez nos perspectives stratégiques et accédez à nos opportunités exclusives.
-            </p>
-
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-              <input 
-                type="email" 
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="votre.adresse@email.com"
-                className="w-full bg-transparent border-b border-neutral-300 py-3 text-center text-neutral-900 text-sm font-light focus:outline-none focus:border-[#C9A227] transition-colors placeholder:text-neutral-400"
-              />
-              <button 
-                type="submit"
-                className="group flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.3em] font-bold text-neutral-900 hover:text-[#C9A227] transition-all duration-500"
-              >
-                S'inscrire <ArrowRight className="w-3 h-3 group-hover:translate-x-2 transition-transform" />
-              </button>
-            </form>
-          </div>
+            
+            <input 
+              required 
+              type="email" 
+              placeholder="votre email..." 
+              className="bg-transparent border-b border-neutral-300 py-1.5 text-center text-[11px] md:text-sm mb-6 focus:outline-none focus:border-[#C9A227]" 
+            />
+            
+            <button 
+              type="submit" 
+              className="flex items-center justify-center gap-1.5 text-[8px] md:text-[10px] uppercase tracking-[0.2em] font-bold hover:text-[#C9A227] transition-all"
+            >
+              S'inscrire <ArrowRight className="w-2.5 h-2.5" />
+            </button>
+          </form>
         ) : (
-          <div className="py-10 text-center animate-in fade-in duration-500">
-            <h3 className="text-xl font-light text-neutral-900 uppercase tracking-[0.2em]">Confirmé</h3>
-            <div className="w-12 h-[1px] bg-[#C9A227] mx-auto mt-6" />
-          </div>
+          <div className="py-6 text-center text-sm md:text-xl uppercase tracking-[0.2em] font-light">Confirmé</div>
         )}
       </div>
     </div>

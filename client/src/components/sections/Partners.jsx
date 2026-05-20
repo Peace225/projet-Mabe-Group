@@ -7,6 +7,8 @@ const partnersData = [
   { id: 3, fileName: "ngia.png", alt: "NGIA" },
   { id: 4, fileName: "rupac.png", alt: "Rupac" },
   { id: 5, fileName: "digital.jpg", alt: "Digital Partner" },
+  { id: 5, fileName: "invest.jpg", alt: "Invest In Bangui" },
+  
 ];
 
 export default function Partners() {
