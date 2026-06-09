@@ -8,13 +8,24 @@ const Industrial = () => {
       
       {/* --- HERO SECTION --- */}
       <section className="relative px-6 md:px-20 pt-32 pb-20 md:pt-40 md:pb-32">
-        <div className="max-w-7xl mx-auto border-l-2 border-[#C9A227] pl-6 md:pl-10">
-          <h4 className="text-[#C9A227] uppercase tracking-[0.4em] text-[9px] md:text-[10px] mb-4 md:mb-6 font-bold">Pôle Industriel</h4>
-          <h1 className="text-5xl sm:text-7xl md:text-9xl font-black uppercase tracking-tighter leading-[0.8] mb-8 md:mb-12 text-[#1a1a1a]">
+        {/* Suppression de la bordure gauche sur mobile pour un meilleur centrage, conservée sur desktop */}
+        <div className="max-w-7xl mx-auto border-l-0 md:border-l-2 border-[#C9A227] pl-0 md:pl-10 flex flex-col items-center md:items-start text-center md:text-left">
+          
+          <h4 className="text-[#C9A227] uppercase tracking-[0.4em] text-[9px] md:text-[10px] mb-4 md:mb-6 font-bold font-sans">
+            Pôle Industriel
+          </h4>
+          
+          <h1 className="text-5xl sm:text-7xl md:text-9xl font-black uppercase tracking-tighter leading-[0.8] mb-6 md:mb-8 text-[#1a1a1a] font-sans">
             RUPAC & <br />
             <span className="text-[#C9A227] italic font-light">NGIA FOOD</span>
           </h1>
-          <p className="max-w-xl text-base md:text-lg leading-relaxed font-light text-[#525252]">
+
+          {/* Le Slug / Sous-titre ajouté ici pour le côté premium */}
+          <p className="text-lg md:text-xl font-serif italic text-gray-500 mb-6 md:mb-8 leading-relaxed">
+            "L'ingénierie au service d'un écosystème africain durable."
+          </p>
+
+          <p className="max-w-xl text-base md:text-lg leading-relaxed font-light text-[#525252] font-sans">
             L'innovation industrielle au service du développement durable. Nous transformons les ressources locales en solutions durables, alliant rigueur et excellence.
           </p>
         </div>
@@ -23,42 +34,63 @@ const Industrial = () => {
       {/* --- RUPAC --- */}
       <section className="px-6 md:px-20 py-16 md:py-24 bg-[#f4f2ee]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-[#1a1a1a]">RUPAC</h2>
-            <p className="italic text-[#C9A227] text-lg md:text-xl mb-6">"Du plastique à la pierre pour un monde plus vert."</p>
-            <p className="text-[#525252] mb-8 md:mb-10 leading-relaxed text-sm md:text-base">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-[#1a1a1a] font-sans">RUPAC</h2>
+            {/* Slug RUPAC en font-serif */}
+            <p className="italic text-[#C9A227] text-lg md:text-xl mb-6 font-serif">
+              "Du plastique à la pierre pour un monde plus vert."
+            </p>
+            <p className="text-[#525252] mb-8 md:mb-10 leading-relaxed text-sm md:text-base font-sans">
               Le pôle industriel spécialisé dans la valorisation des déchets plastiques transformés en matériaux de construction (pavés écologiques).
             </p>
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
+            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full">
               {['Recyclage Plastique', 'Pavés Écologiques', 'Solutions Env.', 'Valorisation'].map((item) => (
-                <div key={item} className="border border-[#e0e0e0] p-3 md:p-4 text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[#525252] bg-white text-center">{item}</div>
+                <div key={item} className="border border-[#e0e0e0] p-3 md:p-4 text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-[#525252] bg-white text-center font-sans font-bold">
+                  {item}
+                </div>
               ))}
             </div>
           </div>
-          <div className="h-[300px] md:h-[500px] overflow-hidden border border-[#e0e0e0]">
-            <img src="/images/rupac.png" alt="RUPAC Production" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+          
+          {/* Conteneur image RUPAC corrigé pour mobile */}
+          <div className="w-full h-auto md:h-[500px] overflow-hidden border border-[#e0e0e0] flex justify-center items-center bg-white">
+            <img 
+              src="/images/rupac.png" 
+              alt="RUPAC Production" 
+              className="w-full h-auto md:h-full object-contain md:object-cover hover:scale-105 transition-transform duration-700" 
+            />
           </div>
         </div>
       </section>
 
       {/* --- BANDEAU --- */}
-      <div className="w-full h-[30vh] md:h-[40vh] overflow-hidden">
+      <div className="w-full h-[30vh] md:h-[50vh] overflow-hidden">
         <img src="/images/food.jpg" alt="Industrial Excellence" className="w-full h-full object-cover grayscale opacity-80" />
       </div>
 
       {/* --- NGIA FOOD --- */}
       <section className="px-6 md:px-20 py-16 md:py-24 bg-[#fcfaf6]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div className="order-2 lg:order-1 h-[300px] md:h-[500px] overflow-hidden border border-[#e0e0e0]">
-            <img src="/images/ngia.png" alt="NGIA Food Transformation" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+          
+          {/* Conteneur image NGIA FOOD corrigé pour mobile */}
+          <div className="order-2 lg:order-1 w-full h-auto md:h-[500px] overflow-hidden border border-[#e0e0e0] flex justify-center items-center bg-white">
+            <img 
+              src="/images/ngia.png" 
+              alt="NGIA Food Transformation" 
+              className="w-full h-auto md:h-full object-contain md:object-cover hover:scale-105 transition-transform duration-700" 
+            />
           </div>
-          <div className="order-1 lg:order-2">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-[#1a1a1a]">NGIA FOOD</h2>
-            <p className="italic text-[#C9A227] text-lg md:text-xl mb-6">"L'innovation alimentaire moderne."</p>
-            <p className="text-[#525252] mb-8 md:mb-10 leading-relaxed text-sm md:text-base">
+          
+          <div className="order-1 lg:order-2 flex flex-col items-center md:items-start text-center md:text-left">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-[#1a1a1a] font-sans">NGIA FOOD</h2>
+            {/* Slug NGIA FOOD en font-serif */}
+            <p className="italic text-[#C9A227] text-lg md:text-xl mb-6 font-serif">
+              "L'innovation alimentaire moderne."
+            </p>
+            <p className="text-[#525252] mb-8 md:mb-10 leading-relaxed text-sm md:text-base font-sans">
               Solutions alimentaires pratiques et qualitatives. Nous transformons et distribuons des produits locaux avec une exigence absolue en matière d'hygiène.
             </p>
-            <ul className="space-y-3 md:space-y-4 text-[#525252] text-xs md:text-sm uppercase tracking-[0.2em]">
+            <ul className="space-y-3 md:space-y-4 text-[#525252] text-xs md:text-sm uppercase tracking-[0.2em] font-sans font-medium text-left">
               <li>• Produits prêts à cuisiner</li>
               <li>• Transformation & surgelés</li>
               <li>• Distribution intégrée</li>
@@ -68,21 +100,22 @@ const Industrial = () => {
       </section>
 
       {/* --- INFOS CONTACT --- */}
+      {/* Centrage des textes sur mobile pour correspondre au reste */}
       <section className="px-6 md:px-20 py-20 md:py-32 border-t border-[#e0e0e0] bg-[#f4f2ee]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
-          <div>
-            <h4 className="text-[#C9A227] text-[9px] md:text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">Localisation</h4>
-            <p className="text-xl md:text-2xl font-light text-[#1a1a1a]">Bangui, RCA</p>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 text-center md:text-left">
+          <div className="flex flex-col items-center md:items-start">
+            <h4 className="text-[#C9A227] text-[9px] md:text-[10px] uppercase tracking-[0.3em] mb-4 font-bold font-sans">Localisation</h4>
+            <p className="text-xl md:text-2xl font-light text-[#1a1a1a] font-sans">Bangui, RCA</p>
           </div>
-          <div>
-            <h4 className="text-[#C9A227] text-[9px] md:text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">Contact Direct</h4>
-            <p className="text-xl md:text-2xl font-light text-[#1a1a1a]">+236 74 38 67 38</p>
-            <p className="text-[#525252] text-sm md:text-base">excellenciamabe@gmail.com</p>
+          <div className="flex flex-col items-center md:items-start">
+            <h4 className="text-[#C9A227] text-[9px] md:text-[10px] uppercase tracking-[0.3em] mb-4 font-bold font-sans">Contact Direct</h4>
+            <p className="text-xl md:text-2xl font-light text-[#1a1a1a] font-sans">+236 74 38 67 38</p>
+            <p className="text-[#525252] text-sm md:text-base font-sans mt-2">excellenciamabe@gmail.com</p>
           </div>
-          <div>
-            <h4 className="text-[#C9A227] text-[9px] md:text-[10px] uppercase tracking-[0.3em] mb-4 font-bold">Informations Légales</h4>
-            <p className="text-[#525252] text-xs md:text-sm">RCCM: RCBG2025B2905</p>
-            <p className="text-[#525252] text-xs md:text-sm">NIU: 2362025M38832R</p>
+          <div className="flex flex-col items-center md:items-start">
+            <h4 className="text-[#C9A227] text-[9px] md:text-[10px] uppercase tracking-[0.3em] mb-4 font-bold font-sans">Informations Légales</h4>
+            <p className="text-[#525252] text-xs md:text-sm font-sans mb-2">RCCM: RCBG2025B2905</p>
+            <p className="text-[#525252] text-xs md:text-sm font-sans">NIU: 2362025M38832R</p>
           </div>
         </div>
       </section>
