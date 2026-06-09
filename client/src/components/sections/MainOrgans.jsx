@@ -33,12 +33,19 @@ export default function MainOrgans() {
           viewport={{ once: true }}
           className="mb-24 text-center"
         >
-          <span className="text-[#C9A227] text-[10px] font-bold uppercase tracking-[0.4em] mb-4 block">
+          <span className="text-[#C9A227] text-[10px] font-bold uppercase tracking-[0.4em] mb-4 block font-sans">
             Écosystème Mabe
           </span>
-          <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter">
+          
+          <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-6 font-sans">
             Nos Pôles Stratégiques
           </h2>
+
+          {/* Le Slug / Sous-titre ajouté ici */}
+          <p className="text-lg md:text-xl font-serif italic text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            "Bâtir l'avenir à travers une expertise multisectorielle d'excellence."
+          </p>
+
           <motion.div 
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
@@ -64,15 +71,15 @@ export default function MainOrgans() {
                   {organ.icon}
                 </div>
 
-                <h3 className="text-sm font-bold uppercase tracking-widest mb-4">
+                <h3 className="text-sm font-bold uppercase tracking-widest mb-4 font-sans">
                   {organ.title}
                 </h3>
                 
-                <p className="text-[#525252] text-xs leading-relaxed font-light mb-8 max-w-[200px]">
+                <p className="text-[#525252] text-xs leading-relaxed font-light mb-8 max-w-[200px] font-sans">
                   {organ.desc}
                 </p>
 
-                <div className="mt-auto text-[9px] font-bold uppercase tracking-[0.3em] text-[#C9A227] border-b border-transparent group-hover:border-[#C9A227] transition-all duration-300">
+                <div className="mt-auto text-[9px] font-bold uppercase tracking-[0.3em] text-[#C9A227] border-b border-transparent group-hover:border-[#C9A227] transition-all duration-300 font-sans">
                   DÉCOUVRIR
                 </div>
               </Link>

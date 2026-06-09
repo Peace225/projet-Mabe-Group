@@ -26,19 +26,24 @@ const MotDirecteur = () => {
             <span className="text-[#C9A227] uppercase tracking-[0.3em] md:tracking-[0.5em] text-[8px] md:text-[10px] mb-2 md:mb-4 font-bold block">
               Gouvernance & Vision
             </span>
-            <h1 className="text-[#1A1A1A] font-black text-4xl md:text-7xl uppercase tracking-tighter leading-[0.9] mb-6 md:mb-8">
+            <h1 className="text-[#1A1A1A] font-black text-4xl md:text-7xl uppercase tracking-tighter leading-[0.9] mb-4">
               Le Mot du <br /> <span className="text-gray-300 font-light italic font-serif lowercase">ceo</span>
             </h1>
+            
+            {/* Le Slug / Sous-titre ajouté ici */}
+            <p className="text-base md:text-xl font-serif italic text-gray-500 mb-6 md:mb-8 leading-relaxed">
+              "L'incarnation d'un leadership engagé et d'une vision d'excellence."
+            </p>
           </div>
           
           <div className="space-y-6 md:space-y-8">
             <p className="text-[#525252] text-lg md:text-3xl leading-relaxed font-serif italic font-light tracking-tight border-l-2 border-[#C9A227]/30 pl-4 md:pl-8 bg-white/40 py-4 pr-4 rounded-r-sm shadow-sm">
-              "Notre ambition n'est pas simplement de suivre les évolutions du marché, mais d'en être les principaux architectes."
+              "Nous croyons que l'excellence n'est pas un privilège réservé à quelques-uns. C'est un état d'esprit, une discipline et un engagement quotidien envers la qualité, l'innovation et le progrès."
             </p>
             
             <div className="flex flex-col pl-4 md:pl-8">
-              <span className="text-[#C9A227] uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-xs font-bold mb-1">Mlle. Excellencia</span>
-              <span className="text-gray-400 text-[8px] md:text-[9px] uppercase tracking-[0.1em] md:tracking-[0.2em] font-medium">Directrice Générale, Excellencia Mabe Group</span>
+              <span className="text-[#C9A227] uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px] md:text-xs font-bold mb-1">Mlle. Excellencia Mabekondiasson</span>
+              <span className="text-gray-400 text-[8px] md:text-[9px] uppercase tracking-[0.1em] md:tracking-[0.2em] font-medium">CEO & Fondatrice, EXCELLENCIA MABE SARL</span>
             </div>
           </div>
         </div>
@@ -46,7 +51,7 @@ const MotDirecteur = () => {
         <div className="order-1 lg:order-2 relative group w-full max-w-[300px] md:max-w-md mx-auto lg:ml-auto">
           <div className="absolute -inset-4 border border-[#1A1A1A]/5 translate-x-2 translate-y-2 rounded-sm" />
           <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-gray-100 border border-white z-10">
-            <img src="/images/hero.jpeg" alt="Mlle. Excellencia" className="w-full h-full object-cover object-top filter grayscale" />
+            <img src="/images/hero.jpeg" alt="Mlle. Excellencia Mabekondiasson" className="w-full h-full object-cover object-top filter grayscale" />
           </div>
         </div>
       </section>
@@ -54,19 +59,24 @@ const MotDirecteur = () => {
       {/* --- SECTION LETTRE --- */}
       <section className="bg-white py-20 md:py-36 px-6 relative border-y border-[#1A1A1A]/5">
         <div className="max-w-3xl mx-auto relative z-10 space-y-6 md:space-y-10 text-[#525252] font-light leading-relaxed text-sm md:text-lg tracking-wide text-justify">
-          <p className="font-bold text-[#1A1A1A] text-xl md:text-2xl tracking-tight mb-8 md:mb-12 font-serif italic">Chers partenaires, chers clients,</p>
-          <p>Lorsque nous avons fondé <strong className="font-semibold text-[#1A1A1A]">Excellencia Mabe Group</strong>, nous avions une conviction : le potentiel de l'Afrique nécessite une structuration rigoureuse.</p>
+          <p className="font-bold text-[#1A1A1A] text-xl md:text-2xl tracking-tight mb-8 md:mb-12 font-serif italic">Bienvenue chez EXCELLENCIA MABE SARL.</p>
+          <p>J'ai créé EXCELLENCIA MABE avec une conviction profonde : l'Afrique centrale, et particulièrement la République Centrafricaine, regorge de talents, d'opportunités et de potentiels encore insuffisamment valorisés.</p>
+          <p>Notre mission est de construire des entreprises solides, innovantes et porteuses d'impact dans des secteurs stratégiques tels que le marketing digital, l'industrie et l'immobilier. À travers chacun de nos pôles d'activité, nous cherchons à apporter des solutions concrètes, créer de la valeur et contribuer au développement économique de notre pays.</p>
+          <p>Chez EXCELLENCIA MABE, nous avons l'ambition d'accompagner les entrepreneurs, de créer des opportunités pour la jeunesse, de promouvoir les talents locaux et de développer des projets capables de transformer durablement notre environnement.</p>
           
           <blockquote className="my-12 md:my-20 py-8 md:py-12 border-y border-[#1A1A1A]/10 text-center">
-            <p className="text-[#1A1A1A] font-black text-xl md:text-4xl uppercase tracking-tighter leading-tight">
-              "L'innovation est notre moteur, l'intégrité notre boussole."
+            <p className="text-[#1A1A1A] font-black text-xl md:text-3xl uppercase tracking-tighter leading-tight">
+              "Notre premier pôle, NGIA DIGITAL, illustre parfaitement cette vision."
             </p>
           </blockquote>
+
+          <p>Ce n'est que le début d'une aventure entrepreneuriale portée par une vision à long terme : bâtir un groupe africain reconnu pour son excellence, son impact et sa capacité à créer des opportunités durables.</p>
+          <p>Je vous remercie pour votre confiance et vous souhaite la bienvenue dans l'univers EXCELLENCIA MABE.</p>
           
           <div className="pt-8 md:pt-16 flex flex-col items-end">
-            <span className="text-xl md:text-3xl text-[#1A1A1A] font-black italic tracking-tighter uppercase font-serif">Excellencia</span>
+            <span className="text-xl md:text-3xl text-[#1A1A1A] font-black italic tracking-tighter uppercase font-serif">Excellencia M.</span>
             <div className="h-[2px] w-8 md:w-12 bg-[#C9A227] mt-2 mb-2" />
-            <span className="text-gray-400 text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.4em] font-bold">Directrice Générale</span>
+            <span className="text-gray-400 text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.4em] font-bold">CEO & Fondatrice</span>
           </div>
         </div>
       </section>

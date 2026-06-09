@@ -17,6 +17,10 @@ import Partenaire from './pages/about/Partenaire';
 import EventPage from './pages/news/Events';
 import Contact from "./pages/contact/Contact";
 import NewsletterPopup from './components/ui/NewsletterPopup';
+import AboutSection from './pages/home/AboutSection';
+
+// (À DÉCOMMENTER quand vous aurez créé la page de lecture d'un article)
+// import NewsDetail from './pages/news/NewsDetail'; 
 
 // --- IMPORT DES COMPOSANTS ADMIN ---
 import Login from './pages/admin/Login';
@@ -55,10 +59,10 @@ function App() {
         <NewsletterPopup />
         <Routes>
           {/* ======================= */}
-          {/* VITRINE PUBLIQUE     */}
+          {/* VITRINE PUBLIQUE        */}
           {/* ======================= */}
           <Route path="/" element={<Home />} />
-          <Route path="/a-propos" element={<APropos />} />
+          <Route path="/a-propos" element={<AboutSection />} />
           <Route path="/vision-mission" element={<VisionMission />} />
           <Route path="/marketing" element={<Marketing />} />
           <Route path="/industrial" element={<Industrial />} />
@@ -66,12 +70,16 @@ function App() {
           <Route path="/immobilier" element={<Immobilier />} />
           <Route path="/mot-directeur" element={<MotDirecteur />} />
           <Route path="/news/event" element={<EventPage />} />
+          
+          {/* NOUVEAU : Route dynamique avec un SLUG pour lire un article entier */}
+          {/* <Route path="/news/:slug" element={<NewsDetail />} /> */}
+          
           <Route path="/equipe" element={<Equipe />} />
           <Route path="/partenaire" element={<Partenaire />} />
           <Route path="/contact" element={<Contact />} />
 
           {/* ======================= */}
-          {/* ZONE D'ADMINISTRATION */}
+          {/* ZONE D'ADMINISTRATION   */}
           {/* ======================= */}
           <Route path="/admin" element={<Login />} />
           <Route path="/admin/login" element={<Login />} />

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 // --- CONFIGURATION ---
 const statsData = [
-  { id: 1, label: "Marketing", src: "/images/digital.jpg", link: "/marketing" },
+  { id: 1, label: "Marketing", src: "/images/digital.png", link: "/marketing" },
   { id: 2, label: "Industriel", src: "/images/rupac.png", link: "/industrial" },
-  { id: 3, label: "Food", src: "/images/ngia.png", link: "/ngiafood" },
+  { id: 3, label: "Food", src: "/images/ngiafood.png", link: "/ngiafood" },
   { id: 4, label: "Immobilier", src: "/images/logo.png", link: "/immobilier" }
 ];
 

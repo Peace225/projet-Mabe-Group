@@ -27,35 +27,35 @@ const testimonialsData = [
     quote: "L'approche stratégique de Mabe Group a complètement redéfini notre positionnement sur le marché ouest-africain. Leur niveau d'exigence est incomparable.",
     author: "Jean-Marc Kouamé",
     role: "Directeur Général, TechAfrica",
-    image: "/images/avatar1.jpg"
+    image: "/images/test4.jpg"
   },
   {
     id: 2,
     quote: "Une synergie parfaite entre le pôle industriel et marketing. Ils n'ont pas seulement exécuté un projet, ils ont élevé la vision globale de notre entreprise.",
     author: "Sarah El-Hajj",
     role: "CEO, Horizon Logistics",
-    image: "/images/avatar2.jpg"
+    image: "/images/news-1.jpg"
   },
   {
     id: 3,
     quote: "Leur maîtrise des rouages du négoce international et leur réactivité en font un partenaire stratégique de premier plan. L'excellence n'est pas qu'un mot pour eux.",
     author: "Philippe Laurent",
     role: "VP Opérations, Global Trade Corp",
-    image: "/images/avatar3.jpg"
+    image: "/images/test3.jpg"
   },
   {
     id: 4,
     quote: "Des solutions digitales d'une élégance rare, couplées à une exécution technique sans faille. Un véritable catalyseur de croissance.",
     author: "Amina Diallo",
     role: "Directrice Marketing, Innova Bank",
-    image: "/images/avatar4.jpg"
+    image: "/images/test2.jpg"
   },
   {
     id: 5,
     quote: "L'équipe de Mabe a su capturer l'essence de notre marque et la traduire en une identité forte et pérenne. Du grand art.",
     author: "Thomas Dubois",
     role: "Fondateur, Premium Retail",
-    image: "/images/avatar5.jpg"
+    image: "/images/test1.jpg"
   }
 ];
 

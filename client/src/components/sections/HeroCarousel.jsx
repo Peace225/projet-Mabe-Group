@@ -70,6 +70,12 @@ export default function HeroCarousel() {
             <span className="inline-block animate-[slideUp_1s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">Excellencia</span>
             <span className="block md:inline-block md:ml-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-[#C9A227] to-white animate-[slideUp_1s_cubic-bezier(0.16,1,0.3,1)_0.4s_both,shimmer_3s_linear_infinite] bg-[length:200%_100%]">Mabe</span>
           </h1>
+          
+          {/* Le Slug / Slogan ajouté ici */}
+          <p className="text-lg md:text-2xl font-serif italic text-[#C9A227] mb-6 animate-[slideUp_1s_cubic-bezier(0.16,1,0.3,1)_0.5s_both]">
+            Une quête perpétuelle de l'excellence
+          </p>
+
           <p className="text-[10px] md:text-sm font-light tracking-[0.2em] md:tracking-[0.5em] uppercase opacity-80 border-t border-white/20 pt-4 inline-block animate-[slideUp_1s_cubic-bezier(0.16,1,0.3,1)_0.6s_both]">
             Bienvenue dans notre écosystème
           </p>
