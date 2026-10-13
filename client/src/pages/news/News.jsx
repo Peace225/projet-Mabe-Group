@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 
 const News = () => {
@@ -50,45 +51,65 @@ const News = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12 md:gap-y-16">
-            {newsList.map((news, index) => (
-              <article key={news.id} className="group cursor-pointer flex flex-col h-full">
-                
-                <div className="aspect-[4/3] bg-gray-100 mb-6 overflow-hidden relative rounded-sm">
-                  <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-3 py-1 text-[7px] md:text-[8px] uppercase tracking-widest font-bold text-mabe-dark">
-                    Mabe Group
-                  </div>
-                  <img
-                    src={news.image_url || `/images/news-${(index % 3) + 1}.jpg`}
-                    alt={news.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms] ease-out"
-                  />
-                </div>
-                
-                <div className="flex-grow flex flex-col">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-mabe-gold text-[9px] uppercase tracking-widest font-bold block">
-                      {formatDate(news.created_at)}
-                    </span>
-                  </div>
-                  
-                  <h3 className="text-mabe-dark font-sans font-bold text-xl md:text-2xl mb-3 leading-snug group-hover:text-mabe-gold transition-colors duration-300">
-                    {news.title}
-                  </h3>
-                  
-                  <p className="text-gray-500 font-sans font-light text-xs md:text-sm line-clamp-3 mb-6 leading-relaxed">
-                    {news.content}
-                  </p>
-                  
-                  <div className="mt-auto flex items-center gap-2 text-[9px] md:text-[10px] uppercase tracking-widest text-mabe-dark font-bold group-hover:translate-x-2 group-hover:text-mabe-gold transition-all duration-300">
-                    Lire l'article
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </div>
-                </div>
+            {newsList.map((news, index) => {
+              const mainImage = news.image_url || (news.images && news.images[0]) || `/images/news-${(index % 3) + 1}.jpg`;
 
-              </article>
-            ))}
+              return (
+                <div key={news.id} className="group flex flex-col h-full bg-white border border-gray-100 p-5 rounded-sm shadow-sm transition-all hover:shadow-md">
+                  
+                  {/* Affichage de la vidéo sans image de fond (poster retiré) */}
+                  {news.video_url ? (
+                    <div className="relative aspect-[4/3] bg-black mb-6 overflow-hidden rounded-sm">
+                      <video 
+                        src={news.video_url} 
+                        controls 
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-3 py-1 text-[7px] md:text-[8px] uppercase tracking-widest font-bold text-mabe-dark pointer-events-none">
+                        Vidéo Officielle
+                      </div>
+                    </div>
+                  ) : (
+                    <Link to={`/news/${news.id}`} className="aspect-[4/3] bg-gray-100 mb-6 overflow-hidden relative rounded-sm block">
+                      <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-3 py-1 text-[7px] md:text-[8px] uppercase tracking-widest font-bold text-mabe-dark">
+                        Mabe Group
+                      </div>
+                      <img
+                        src={mainImage}
+                        alt={news.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms] ease-out"
+                      />
+                    </Link>
+                  )}
+                  
+                  <div className="flex-grow flex flex-col">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-mabe-gold text-[9px] uppercase tracking-widest font-bold block">
+                        {formatDate(news.created_at)}
+                      </span>
+                    </div>
+                    
+                    <Link to={`/news/${news.id}`}>
+                      <h3 className="text-mabe-dark font-sans font-bold text-xl md:text-2xl mb-3 leading-snug group-hover:text-mabe-gold transition-colors duration-300">
+                        {news.title}
+                      </h3>
+                    </Link>
+                    
+                    <p className="text-gray-500 font-sans font-light text-xs md:text-sm line-clamp-3 mb-6 leading-relaxed">
+                      {news.content}
+                    </p>
+                    
+                    <Link to={`/news/${news.id}`} className="mt-auto flex items-center gap-2 text-[9px] md:text-[10px] uppercase tracking-widest text-mabe-dark font-bold group-hover:translate-x-2 group-hover:text-mabe-gold transition-all duration-300">
+                      Lire l'article
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  </div>
+
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

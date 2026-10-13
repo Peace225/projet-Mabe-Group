@@ -15,12 +15,13 @@ import MotDirecteur from "./pages/about/MotDirectrice";
 import Equipe from './pages/about/Equipe';
 import Partenaire from './pages/about/Partenaire';
 import EventPage from './pages/news/Events';
+import News from './pages/news/News';           // <--- Import de la page de liste des actualités
+import NewsDetail from './pages/news/NewsDetail'; // <--- Import de la page de lecture d'un article
 import Contact from "./pages/contact/Contact";
 import NewsletterPopup from './components/ui/NewsletterPopup';
 import AboutSection from './pages/home/AboutSection';
-
-// (À DÉCOMMENTER quand vous aurez créé la page de lecture d'un article)
-// import NewsDetail from './pages/news/NewsDetail'; 
+import MentionsLegales from './pages/legal/MentionsLegales';
+import Confidentialite from './pages/legal/Confidentialite';
 
 // --- IMPORT DES COMPOSANTS ADMIN ---
 import Login from './pages/admin/Login';
@@ -31,7 +32,7 @@ import LeadsList from './pages/admin/leads/LeadsList';
 
 /**
  * Ce composant "Wrapper" permet de masquer la Navbar et le Footer 
- * lorsqu'on se trouve dans la zone d'administration (qui a son propre menu).
+ * lorsqu'on se trouve dans la zone d'administration.
  */
 const AppLayout = ({ children }) => {
   const location = useLocation();
@@ -39,14 +40,12 @@ const AppLayout = ({ children }) => {
 
   return (
     <div className="flex flex-col min-h-screen bg-mabe-dark">
-      {/* On affiche la Navbar uniquement si on n'est pas dans l'admin */}
       {!isAdmin && <Navbar />}
 
       <main className="flex-grow">
         {children}
       </main>
 
-      {/* On affiche le Footer uniquement si on n'est pas dans l'admin */}
       {!isAdmin && <Footer />}
     </div>
   );
@@ -69,10 +68,13 @@ function App() {
           <Route path="/ngiafood" element={<NgiaFood />} />
           <Route path="/immobilier" element={<Immobilier />} />
           <Route path="/mot-directeur" element={<MotDirecteur />} />
-          <Route path="/news/event" element={<EventPage />} />
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/confidentialite" element={<Confidentialite />} />
           
-          {/* NOUVEAU : Route dynamique avec un SLUG pour lire un article entier */}
-          {/* <Route path="/news/:slug" element={<NewsDetail />} /> */}
+          {/* ROUTES ACTUALITÉS */}
+          <Route path="/news" element={<News />} />           {/* <--- Page de liste des actualités */}
+          <Route path="/news/event" element={<EventPage />} />
+          <Route path="/news/:id" element={<NewsDetail />} /> {/* <--- Page de lecture d'un article complet */}
           
           <Route path="/equipe" element={<Equipe />} />
           <Route path="/partenaire" element={<Partenaire />} />

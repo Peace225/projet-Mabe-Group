@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import ContactForm from '../../components/ui/ContactForm';
+import { MapPin, Mail, Phone } from 'lucide-react';
 
 export default function Contact() {
   useEffect(() => {
@@ -7,64 +9,83 @@ export default function Contact() {
   }, []);
 
   return (
-    <div className="bg-[#FCFAF6] min-h-screen pt-24 md:pt-40 pb-20 md:pb-32 relative overflow-hidden text-[#1A1A1A] antialiased">
+    <div className="bg-[#FCFAF6] min-h-screen pt-28 md:pt-40 pb-20 md:pb-32 relative overflow-hidden text-[#1A1A1A] antialiased">
       
-      <div className="absolute top-0 left-1/2 w-[800px] h-[500px] bg-[#C9A227]/3 blur-[160px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-multiply" />
+      {/* Halo lumineux d'ambiance */}
+      <motion.div 
+        animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+        className="absolute top-0 left-1/2 w-[800px] h-[500px] bg-[#C9A227]/5 blur-[160px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-multiply" 
+      />
 
       {/* --- SECTION HEADER --- */}
       <section className="max-w-7xl mx-auto px-6 mb-20 md:mb-36 relative z-10">
-        <div className="flex flex-col items-center text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center text-center"
+        >
           <div className="w-[1px] h-12 md:h-20 bg-gradient-to-b from-transparent to-[#C9A227] mb-6 md:mb-10" />
-          <span className="text-[#C9A227] uppercase tracking-[0.3em] md:tracking-[0.5em] text-[9px] md:text-[10px] mb-4 md:mb-6 font-bold block">
+          
+          <span className="text-[#C9A227] uppercase tracking-[0.3em] md:tracking-[0.5em] text-[9px] md:text-[10px] mb-4 md:mb-6 font-bold block font-sans">
             Hub de Communication
           </span>
+          
           <h1 className="text-[#1A1A1A] font-sans font-black text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-tighter leading-[0.85] mb-6 md:mb-10">
             Entrer en <br />
             <span className="text-gray-300 font-light font-serif italic lowercase">c</span>ontact
           </h1>
-          <p className="text-[#525252] max-w-xl mx-auto text-sm md:text-base leading-relaxed font-light tracking-wide px-4">
+          
+          <p className="text-[#525252] max-w-xl mx-auto text-sm md:text-base leading-relaxed font-light tracking-wide px-4 font-sans">
             Vous avez une vision, nous avons l'expertise. Nos consultants sont prêts à transformer vos défis en opportunités.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* --- SECTION INFOS & FORMULAIRE --- */}
       <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 lg:gap-24 items-start mb-20 md:mb-40 relative z-10">
         
-        {/* COLONNE GAUCHE */}
-        <div className="lg:col-span-4 space-y-12 md:space-y-16 order-2 lg:order-1">
+        {/* COLONNE GAUCHE (Infos de contact) */}
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:col-span-4 space-y-12 md:space-y-16 order-2 lg:order-1"
+        >
           
           <div className="space-y-4 md:space-y-6">
-            <h3 className="text-[#1A1A1A] font-bold text-lg md:text-xl uppercase tracking-widest relative inline-block">
+            <h3 className="text-[#1A1A1A] font-bold text-lg md:text-xl uppercase tracking-widest relative inline-block font-sans">
               Nos Bureaux
               <span className="absolute -bottom-2 md:-bottom-3 left-0 w-8 h-[1px] bg-[#C9A227]" />
             </h3>
             <div className="space-y-6 pt-2">
               <div className="border-l border-[#1A1A1A]/10 pl-4">
                 <h4 className="text-[#C9A227] uppercase tracking-[0.2em] text-[8px] md:text-[9px] font-bold mb-1">Siège Social — RCA</h4>
-                <p className="text-gray-500 text-xs md:text-sm leading-relaxed font-light">
-                  Bangui, Avenue des Grands Bureaux
+                <p className="text-gray-500 text-xs md:text-sm leading-relaxed font-light flex items-center gap-2">
+                  <MapPin size={14} className="text-[#C9A227] shrink-0" /> Bangui, Avenue des Grands Bureaux
                 </p>
               </div>
             </div>
           </div>
 
           <div className="space-y-4 md:space-y-6">
-            <h3 className="text-[#1A1A1A] font-bold text-lg md:text-xl uppercase tracking-widest relative inline-block">
+            <h3 className="text-[#1A1A1A] font-bold text-lg md:text-xl uppercase tracking-widest relative inline-block font-sans">
               Contact Direct
               <span className="absolute -bottom-2 md:-bottom-3 left-0 w-8 h-[1px] bg-[#C9A227]" />
             </h3>
             <div className="space-y-4 pt-2">
               <div className="flex flex-col border-l border-[#1A1A1A]/10 pl-4">
                 <span className="text-[#C9A227] text-[7px] uppercase tracking-[0.3em] font-bold mb-1">Email</span>
-                <a href="mailto:excellenciamabe@gmail.com" className="text-gray-500 hover:text-[#C9A227] transition-colors text-sm md:text-lg font-light">
-                  excellenciamabe@gmail.com
+                <a href="mailto:contact@excelenciamabe.org" className="text-gray-500 hover:text-[#C9A227] transition-colors text-sm md:text-base font-light flex items-center gap-2">
+                  <Mail size={14} className="text-[#C9A227] shrink-0" /> contact@excelenciamabe.org
                 </a>
               </div>
-              <div className="flex flex-col border-l border-[#1A1A1A]/10 pl-4">
+              <div className="flex flex-col border-l border-[#1A1A1A]/10 pl-4 mt-4">
                 <span className="text-[#C9A227] text-[7px] uppercase tracking-[0.3em] font-bold mb-1">Téléphone</span>
-                <a href="tel:+23674386738" className="text-gray-500 hover:text-[#C9A227] transition-colors text-sm md:text-lg font-light">
-                  +236 74 38 67 38
+                <a href="tel:+23674386738" className="text-gray-500 hover:text-[#C9A227] transition-colors text-sm md:text-base font-light flex items-center gap-2">
+                  <Phone size={14} className="text-[#C9A227] shrink-0" /> +236 74 38 67 38
                 </a>
               </div>
             </div>
@@ -72,33 +93,45 @@ export default function Contact() {
 
           <div className="flex gap-6 pt-4 border-t border-[#1A1A1A]/5">
             {['LinkedIn', 'Twitter', 'Insta'].map((social) => (
-              <a key={social} href="#" className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] font-bold text-gray-400 hover:text-[#C9A227]">
+              <a key={social} href="#" className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] font-bold text-gray-400 hover:text-[#C9A227] transition-colors">
                 {social}
               </a>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* COLONNE DROITE */}
-        <div className="lg:col-span-8 order-1 lg:order-2">
-          <div className="bg-white border border-[#1A1A1A]/5 p-6 md:p-12 lg:p-20 shadow-sm relative overflow-hidden rounded-sm">
+        {/* COLONNE DROITE (Formulaire) */}
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:col-span-8 order-1 lg:order-2"
+        >
+          <div className="bg-white border border-[#1A1A1A]/5 p-6 md:p-12 lg:p-20 shadow-[0_15px_50px_rgba(0,0,0,0.02)] relative overflow-hidden rounded-sm">
             <h2 className="text-[#1A1A1A] font-sans font-black text-2xl md:text-4xl uppercase tracking-tighter mb-2">Envoyez un message</h2>
             <p className="text-[#C9A227] text-[8px] md:text-[9px] font-bold uppercase tracking-[0.3em] mb-10">
               Délai de réponse : 24h
             </p>
             <ContactForm />
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* --- SECTION FINALE --- */}
-      <section className="w-full px-6 max-w-7xl mx-auto h-[300px] md:h-[450px] relative overflow-hidden border border-[#1A1A1A]/5 rounded-sm">
-        <div className="absolute inset-0 bg-[#FCFAF6]/20 z-10" />
+      {/* --- SECTION FINALE VISUELLE --- */}
+      <motion.section 
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="w-full px-6 max-w-7xl mx-auto h-[300px] md:h-[450px] relative overflow-hidden border border-[#1A1A1A]/5 rounded-sm shadow-sm"
+      >
+        <div className="absolute inset-0 bg-[#FCFAF6]/20 z-10 pointer-events-none" />
         <div 
-          className="w-full h-full bg-cover bg-center grayscale brightness-95"
+          className="w-full h-full bg-cover bg-center grayscale brightness-95 filter contrast-105"
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=2033')" }}
         />
-      </section>
+      </motion.section>
     </div>
   );
 }

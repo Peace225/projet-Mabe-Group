@@ -1,102 +1,289 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ArrowUpRight, Sparkles, Compass, Layers, Zap, Globe, Award } from 'lucide-react';
 
 const services = [
-  { title: "Consulting Stratégique", desc: "Audit et feuilles de route haute performance." },
-  { title: "Community Management", desc: "Animation et gestion d'image de marque." },
-  { title: "Gestion d'Influence", desc: "Partenariats exclusifs entre talents et marques." },
-  { title: "Production de Contenu", desc: "Direction artistique et création visuelle." },
-  { title: "Coaching Digital", desc: "Accompagnement personnalisé pour talents." },
-  { title: "Couverture Média", desc: "Gestion de visibilité événementielle." }
+  { 
+    title: "Consulting Stratégique", 
+    desc: "Audit approfondi, architecture de marque et feuilles de route haute performance pour dompter votre marché.",
+    tag: "Stratégie",
+    icon: <Compass className="w-5 h-5 text-[#C9A227]" />
+  },
+  { 
+    title: "Community Management", 
+    desc: "Animation éditoriale d'élite et gestion d'image de marque avec une précision chirurgicale.",
+    tag: "Social Media",
+    icon: <Layers className="w-5 h-5 text-[#C9A227]" />
+  },
+  { 
+    title: "Gestion d'Influence", 
+    desc: "Connexions stratégiques et partenariats exclusifs entre talents de premier plan et marques visionnaires.",
+    tag: "Influence",
+    icon: <Sparkles className="w-5 h-5 text-[#C9A227]" />
+  },
+  { 
+    title: "Production de Contenu", 
+    desc: "Direction artistique globale, tournages cinématographiques et création visuelle haute couture.",
+    tag: "Création",
+    icon: <Zap className="w-5 h-5 text-[#C9A227]" />
+  },
+  { 
+    title: "Coaching Digital", 
+    desc: "Accompagnement sur-mesure pour dirigeants et talents souhaitant dominer leur écosystème numérique.",
+    tag: "Accompagnement",
+    icon: <Award className="w-5 h-5 text-[#C9A227]" />
+  },
+  { 
+    title: "Couverture Média", 
+    desc: "Orchestration de visibilité événementielle et relations publiques d'envergure internationale.",
+    tag: "Relations Publiques",
+    icon: <Globe className="w-5 h-5 text-[#C9A227]" />
+  }
 ];
 
-const Marketing = () => {
+// Variantes pour les animations en cascade (stagger)
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
+  },
+};
+
+export default function Marketing() {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
-    <div className="bg-[#fcfaf6] min-h-screen text-[#171717]">
+    <div className="bg-[#0A0A0A] min-h-screen text-white selection:bg-[#C9A227] selection:text-black overflow-hidden relative">
       
-      {/* --- HERO SECTION --- */}
-      <section className="px-6 md:px-20 pt-24 md:pt-32 pb-20 max-w-[1600px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start mb-16 md:mb-20 text-center md:text-left">
+      {/* Lueurs d'arrière-plan animées et flottantes */}
+      <motion.div 
+        animate={{ y: [0, -30, 0], scale: [1, 1.1, 1] }}
+        transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+        className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#C9A227]/15 rounded-full blur-[140px] pointer-events-none" 
+      />
+      <motion.div 
+        animate={{ y: [0, 30, 0], scale: [1, 1.15, 1] }}
+        transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+        className="absolute top-1/2 right-10 w-[400px] h-[400px] bg-[#C9A227]/10 rounded-full blur-[120px] pointer-events-none" 
+      />
+
+      {/* --- HERO SECTION ANIMÉE --- */}
+      <section className="px-6 md:px-20 pt-32 md:pt-44 pb-24 max-w-[1600px] mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-20">
           
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl flex flex-col items-center md:items-start w-full">
-            <h4 className="text-[#C9A227] uppercase tracking-[0.4em] text-[10px] md:text-xs mb-6 md:mb-8 font-bold font-sans">
-              Pôle Stratégie & Influence
-            </h4>
-            <h1 className="font-black text-6xl sm:text-7xl md:text-[10rem] uppercase tracking-tighter leading-[0.8] mb-8 md:mb-12 text-[#171717] mx-auto md:mx-0 font-sans">
+          <motion.div 
+            initial={{ opacity: 0, y: 60 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-8"
+          >
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/10 mb-8 backdrop-blur-md"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#C9A227] animate-pulse" />
+              <span className="text-[#C9A227] uppercase tracking-[0.3em] text-[9px] md:text-[10px] font-bold font-sans">
+                Pôle Stratégie & Influence — NGIA Digital
+              </span>
+            </motion.div>
+
+            <h1 className="font-black text-5xl sm:text-7xl md:text-[9rem] uppercase tracking-tighter leading-[0.85] text-white font-sans">
               NGIA <br /> 
-              <span className="text-[#C9A227] italic font-light">Digital</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] via-[#E6CA65] to-white italic font-light">
+                Digital.
+              </span>
             </h1>
           </motion.div>
 
-          <div className="mt-4 md:mt-auto max-w-sm flex flex-col items-center md:items-start">
-            <p className="text-lg md:text-xl font-light italic text-[#525252] mb-6 md:mb-8 text-center md:text-left font-serif leading-relaxed">
-              "L'art d'orchestrer l'influence et de sublimer votre identité."
+          <motion.div 
+            initial={{ opacity: 0, x: 40 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-4 lg:pb-4"
+          >
+            <p className="text-base md:text-lg font-light italic text-gray-400 font-serif leading-relaxed mb-6">
+              "L'art d'orchestrer l'influence et de sculpter une empreinte numérique inoubliable."
             </p>
-            {/* Ligne dorée centrée sur mobile, alignée à gauche sur desktop */}
-            <div className="h-[2px] w-20 bg-[#C9A227] mb-8 mx-auto md:mx-0" />
-          </div>
+            <motion.div 
+              initial={{ width: 0 }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="h-[1px] bg-gradient-to-r from-[#C9A227] to-transparent" 
+            />
+          </motion.div>
         </div>
         
-        {/* Conteneur d'image mis à jour pour ne plus couper sur mobile */}
-        <div className="w-full h-auto md:h-[60vh] bg-[#171717] overflow-hidden mx-auto flex justify-center items-center">
+        {/* Visuel principal avec effet de zoom au chargement */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.94, y: 40 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.4, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full h-[50vh] md:h-[70vh] bg-[#121212] overflow-hidden rounded-sm relative group border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8)]"
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-80 z-10" />
           <img 
             src="/images/digital.png" 
             alt="NGIA Digital" 
-            className="w-full h-auto md:h-full object-contain md:object-cover object-center opacity-80 hover:opacity-100 transition-all duration-[2s] hover:scale-105" 
+            className="w-full h-full object-cover object-center opacity-80 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105 filter contrast-105" 
           />
-        </div>
+          <div className="absolute bottom-8 left-8 right-8 z-20 flex justify-between items-end pointer-events-none">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-[#C9A227] font-bold">
+              [ Édition 2026 / 2027 ]
+            </span>
+            <span className="text-xs uppercase tracking-[0.3em] text-gray-400 font-light">
+              Abidjan — Paris
+            </span>
+          </div>
+        </motion.div>
       </section>
 
-      {/* --- ABOUT SECTION --- */}
-      <section className="px-6 md:px-20 py-16 md:py-20 bg-[#171717] text-white">
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <h2 className="text-2xl md:text-5xl font-black uppercase mb-6 md:mb-10 text-[#C9A227] mx-auto font-sans">
-            Cabinet de stratégie & marketing digital
+      {/* --- MANIFESTO SECTION --- */}
+      <section className="px-6 md:px-20 py-28 relative z-10 border-t border-white/10 bg-gradient-to-b from-[#0A0A0A] to-[#121212]">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <span className="text-[#C9A227] text-[10px] uppercase tracking-[0.4em] font-bold block mb-6">
+            Manifesto
+          </span>
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-8 font-sans leading-tight">
+            Cabinet de stratégie & marketing digital d'élite
           </h2>
-          <p className="text-sm md:text-lg text-gray-300 font-light leading-relaxed max-w-2xl mx-auto font-sans">
-            NGIA DIGITAL accompagne les marques et talents dans leur conquête numérique. 
-            Nous transformons votre visibilité en actif transactionnel avec une précision chirurgicale.
+          <p className="text-base md:text-xl text-gray-400 font-light leading-relaxed font-sans max-w-3xl mx-auto">
+            Nous ne faisons pas simplement de la communication. Nous fusionnons rigueur analytique et fulgurance créative pour transformer votre e-réputation en un actif hautement stratégique et rentable.
           </p>
-        </div>
+        </motion.div>
       </section>
 
-      {/* --- SERVICES GRID --- */}
-      <section className="px-6 md:px-20 py-20 md:py-32 max-w-[1600px] mx-auto">
-        <h3 className="text-[10px] md:text-xs uppercase tracking-[0.3em] mb-12 md:mb-20 text-[#a3a3a3] text-center md:text-left font-sans font-bold">
-          Nos expertises
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-[#e5e5e5]">
+      {/* --- BENTO GRID EXPERTISES AVEC ANIMATION EN CASCADE --- */}
+      <section className="px-6 md:px-20 py-32 max-w-[1600px] mx-auto relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20"
+        >
+          <div>
+            <span className="text-[#C9A227] text-[10px] uppercase tracking-[0.4em] font-bold mb-3 block">
+              Expertises
+            </span>
+            <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white font-sans">
+              Domaines <span className="text-gray-600 font-light">d'Excellence</span>
+            </h3>
+          </div>
+          <p className="text-gray-400 text-sm max-w-sm mt-4 md:mt-0 font-light">
+            Une approche sur-mesure conçue pour les marques et personnalités exigeantes.
+          </p>
+        </motion.div>
+
+        {/* Grille Bento animée en cascade */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {services.map((s, i) => (
             <motion.div 
               key={i} 
-              whileHover={{ backgroundColor: "#C9A227", color: "#000" }} 
-              className="p-8 md:p-12 border-r border-b border-[#e5e5e5] transition-colors duration-500 group flex flex-col items-center md:items-start text-center md:text-left"
+              variants={itemVariants}
+              whileHover={{ y: -8, borderColor: 'rgba(201, 162, 39, 0.5)', scale: 1.01 }}
+              transition={{ duration: 0.3 }}
+              className="group p-10 bg-white/[0.02] border border-white/10 rounded-sm relative overflow-hidden flex flex-col justify-between backdrop-blur-sm cursor-pointer"
             >
-              <span className="text-[#C9A227] font-serif italic text-[14px] md:text-base mb-6 md:mb-8 block group-hover:text-[#000]">
-                0{i + 1}.
-              </span>
-              <h4 className="text-xl md:text-2xl font-bold uppercase mb-4 md:mb-6 font-sans">{s.title}</h4>
-              <p className="text-sm md:text-base font-light opacity-70 group-hover:opacity-100 font-sans">{s.desc}</p>
+              {/* Lueur dorée dynamique au survol */}
+              <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#C9A227]/10 rounded-full blur-3xl group-hover:bg-[#C9A227]/25 transition-all duration-500 pointer-events-none" />
+
+              <div>
+                <div className="flex justify-between items-center mb-10">
+                  <motion.div 
+                    whileHover={{ rotate: 10, scale: 1.1 }}
+                    className="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#C9A227] transition-colors"
+                  >
+                    {s.icon}
+                  </motion.div>
+                  <span className="text-[9px] uppercase tracking-widest text-[#C9A227] font-bold px-3 py-1 rounded-full bg-[#C9A227]/10">
+                    {s.tag}
+                  </span>
+                </div>
+
+                <h4 className="text-xl md:text-2xl font-bold uppercase mb-4 text-white group-hover:text-[#C9A227] transition-colors font-sans">
+                  {s.title}
+                </h4>
+                
+                <p className="text-xs md:text-sm font-light text-gray-400 leading-relaxed font-sans mb-8">
+                  {s.desc}
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-white/5 flex items-center justify-between text-[10px] uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors">
+                <span>En savoir plus</span>
+                <ArrowUpRight className="w-4 h-4 text-[#C9A227] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      {/* --- CALL TO ACTION --- */}
-      <section className="px-6 md:px-20 py-20 md:py-32 text-center border-t border-[#e5e5e5] flex flex-col items-center">
-        <h2 className="text-4xl md:text-8xl font-black uppercase mb-10 md:mb-16 text-[#171717] mx-auto font-sans">
-          Propulsons votre image
-        </h2>
-        <Link to="/#contact" className="inline-block px-8 md:px-16 py-6 md:py-8 bg-[#C9A227] text-[#000] hover:bg-[#171717] hover:text-[#C9A227] transition-all duration-300 font-bold uppercase tracking-[0.2em] text-sm md:text-lg mx-auto font-sans">
-          Démarrer un projet
-        </Link>
+      {/* --- CALL TO ACTION ANIMÉ --- */}
+      <section className="px-6 md:px-20 py-36 text-center relative overflow-hidden bg-gradient-to-t from-[#0A0A0A] to-[#121212] border-t border-white/10">
+        <motion.div 
+          animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }}
+          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#C9A227] via-transparent to-transparent pointer-events-none" 
+        />
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-4xl mx-auto flex flex-col items-center relative z-10"
+        >
+          <span className="text-[#C9A227] text-[10px] uppercase tracking-[0.4em] font-bold mb-6 block">
+            Prêt à franchir le cap ?
+          </span>
+
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase mb-10 text-white tracking-tighter font-sans leading-none">
+            Propulsons <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] to-[#E6CA65] italic font-light">
+              votre image.
+            </span>
+          </h2>
+
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link 
+              to="/contact" 
+              className="inline-flex items-center gap-4 px-12 py-7 bg-[#C9A227] text-black hover:bg-white transition-all duration-300 font-bold uppercase tracking-[0.2em] text-xs md:text-sm shadow-[0_0_50px_rgba(201,162,39,0.4)] rounded-sm group"
+            >
+              <span>Démarrer un projet</span>
+              <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+          </motion.div>
+        </motion.div>
       </section>
-      
+
     </div>
   );
-};
-
-export default Marketing;
+}

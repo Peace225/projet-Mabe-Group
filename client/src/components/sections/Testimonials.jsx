@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 // Icône de guillemet premium personnalisée
 const QuoteIcon = ({ className }) => (
@@ -100,12 +101,22 @@ export default function Testimonials() {
     <section className="py-36 bg-[#FCFAF6] relative overflow-hidden border-t border-[#1A1A1A]/5 text-[#1A1A1A] antialiased">
       
       {/* Lumières d'ambiance organiques et diffuses */}
-      <div className="absolute top-0 left-1/2 w-[800px] h-[500px] bg-[#C9A227]/4 blur-[160px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-multiply" />
+      <motion.div 
+        animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+        className="absolute top-0 left-1/2 w-[800px] h-[500px] bg-[#C9A227]/5 blur-[160px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-multiply" 
+      />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         
-        {/* En-tête de Section épuré */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 border-b border-[#1A1A1A]/5 pb-8">
+        {/* En-tête de Section épuré avec animation */}
+        <motion.div 
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 border-b border-[#1A1A1A]/5 pb-8"
+        >
           <div className="relative pl-6">
             <div className="absolute left-0 top-1 bottom-1 w-[2px] bg-gradient-to-b from-[#C9A227] to-transparent" />
             <span className="text-[#C9A227] text-[10px] font-bold uppercase tracking-[0.5em] mb-4 block">
@@ -117,36 +128,49 @@ export default function Testimonials() {
             </h2>
           </div>
 
-          {/* Boutons de navigation stylisés */}
+          {/* Boutons de navigation stylisés avec micro-interactions */}
           <div className="flex items-center gap-3">
-            <button 
+            <motion.button 
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => scroll('left')}
-              className="w-12 h-12 rounded-full border border-[#1A1A1A]/10 bg-white shadow-sm flex items-center justify-center text-[#1A1A1A]/60 hover:text-white hover:bg-[#1A1A1A] hover:border-[#1A1A1A] transition-all duration-400 focus:outline-none"
+              className="w-12 h-12 rounded-full border border-[#1A1A1A]/10 bg-white shadow-sm flex items-center justify-center text-[#1A1A1A]/60 hover:text-white hover:bg-[#1A1A1A] hover:border-[#1A1A1A] transition-colors focus:outline-none cursor-pointer"
               aria-label="Témoignage précédent"
             >
               <ArrowLeft />
-            </button>
-            <button 
+            </motion.button>
+            <motion.button 
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => scroll('right')}
-              className="w-12 h-12 rounded-full border border-[#1A1A1A]/10 bg-white shadow-sm flex items-center justify-center text-[#1A1A1A]/60 hover:text-white hover:bg-[#1A1A1A] hover:border-[#1A1A1A] transition-all duration-400 focus:outline-none"
+              className="w-12 h-12 rounded-full border border-[#1A1A1A]/10 bg-white shadow-sm flex items-center justify-center text-[#1A1A1A]/60 hover:text-white hover:bg-[#1A1A1A] hover:border-[#1A1A1A] transition-colors focus:outline-none cursor-pointer"
               aria-label="Témoignage suivant"
             >
               <ArrowRight />
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
 
-        {/* PISTE DU SLIDER */}
-        <div 
+        {/* PISTE DU SLIDER AVEC ANIMATION D'ENTRÉE */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           ref={scrollRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           className="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-12 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
-          {testimonialsData.map((testimonial) => (
-            <div 
+          {testimonialsData.map((testimonial, idx) => (
+            <motion.div 
               key={testimonial.id}
-              className="min-w-full sm:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-22px)] snap-start group relative p-10 md:p-12 bg-white border border-[#1A1A1A]/5 shadow-[0_15px_40px_rgba(0,0,0,0.015)] rounded-sm transition-all duration-700 hover:-translate-y-2 hover:border-[#C9A227]/30 hover:shadow-[0_25px_60px_rgba(0,0,0,0.03)] flex flex-col"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: idx * 0.1 }}
+              whileHover={{ y: -8, borderColor: 'rgba(201, 162, 39, 0.4)' }}
+              className="min-w-full sm:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-22px)] snap-start group relative p-10 md:p-12 bg-white border border-[#1A1A1A]/5 shadow-[0_15px_40px_rgba(0,0,0,0.015)] rounded-sm transition-shadow duration-500 hover:shadow-[0_25px_60px_rgba(201,162,39,0.1)] flex flex-col"
             >
               {/* Grand guillemet d'arrière-plan minimaliste */}
               <QuoteIcon className="absolute top-8 right-8 w-14 h-14 text-gray-100 group-hover:text-[#C9A227]/10 transition-colors duration-700 pointer-events-none transform group-hover:scale-105 group-hover:rotate-3" />
@@ -159,12 +183,12 @@ export default function Testimonials() {
               {/* Profil & Signature */}
               <div className="relative z-10 mt-auto pt-6 border-t border-[#1A1A1A]/5 group-hover:border-[#C9A227]/20 transition-colors duration-500 flex items-center gap-4">
                 
-                {/* Avatar avec focus strict en haut pour préserver les visages */}
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-[#1A1A1A]/5 bg-gray-50 flex-shrink-0 group-hover:border-[#C9A227] transition-colors duration-300">
+                {/* Avatar parfaitement rond (rounded-full) avec effet de zoom au survol */}
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-[#1A1A1A]/10 bg-gray-50 flex-shrink-0 group-hover:border-[#C9A227] transition-colors duration-300 shadow-sm">
                   <img 
                     src={testimonial.image} 
                     alt={testimonial.author} 
-                    className="w-full h-full object-cover object-top filter grayscale contrast-105"
+                    className="w-full h-full object-cover object-top rounded-full filter grayscale contrast-105 group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
                 
@@ -180,9 +204,9 @@ export default function Testimonials() {
                 
               </div>
 
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

@@ -4,10 +4,34 @@ import { motion } from 'framer-motion';
 import { Factory, Megaphone, Globe, Building2 } from 'lucide-react';
 
 const organs = [
-  { id: 'marketing', title: 'Marketing & Com', desc: 'Stratégies digitales et identité de marque haute couture.', icon: <Megaphone className="w-6 h-6 stroke-[1.5]" />, link: '/marketing' },
-  { id: 'industrial', title: 'Pôle Industriel', desc: 'Orchestration de projets industriels complexes.', icon: <Factory className="w-6 h-6 stroke-[1.5]" />, link: '/industrial' },
-  { id: 'immobilier', title: 'Immobilier', desc: 'Développement d’actifs stratégiques et prestige.', icon: <Building2 className="w-6 h-6 stroke-[1.5]" />, link: '/immobilier' },
-  { id: 'consulting', title: 'Digital Consulting', desc: 'Accompagnement stratégique et transformation.', icon: <Globe className="w-6 h-6 stroke-[1.5]" />, link: '/a-propos' }
+  { 
+    id: 'marketing', 
+    title: 'Marketing & Com', 
+    desc: 'Stratégies d’influence, image de marque et campagnes publicitaires d’envergure.', 
+    icon: <Megaphone className="w-6 h-6 stroke-[1.5]" />, 
+    link: '/marketing' 
+  },
+  { 
+    id: 'industrial', 
+    title: 'Pôle Industriel', 
+    desc: 'Orchestration de projets industriels complexes et structurants.', 
+    icon: <Factory className="w-6 h-6 stroke-[1.5]" />, 
+    link: '/industrial' 
+  },
+  { 
+    id: 'immobilier', 
+    title: 'Immobilier', 
+    desc: 'Développement d’actifs stratégiques, foncier et prestige.', 
+    icon: <Building2 className="w-6 h-6 stroke-[1.5]" />, 
+    link: '/immobilier' 
+  },
+  { 
+    id: 'consulting', 
+    title: 'Digital Consulting', 
+    desc: 'Transformation numérique, solutions logicielles et conseil technologique.', 
+    icon: <Globe className="w-6 h-6 stroke-[1.5]" />, 
+    link: '/marketing' // Ou vers une page dédiée si vous en créez une
+  }
 ];
 
 // Configuration des animations
@@ -41,7 +65,6 @@ export default function MainOrgans() {
             Nos Pôles Stratégiques
           </h2>
 
-          {/* Le Slug / Sous-titre ajouté ici */}
           <p className="text-lg md:text-xl font-serif italic text-gray-500 max-w-2xl mx-auto leading-relaxed">
             "Bâtir l'avenir à travers une expertise multisectorielle d'excellence."
           </p>
@@ -62,7 +85,7 @@ export default function MainOrgans() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
         >
           {organs.map((organ) => (
-            <motion.div key={organ.id} variants={itemVariants}>
+            <motion.div key={organ.id} variantsitemvariants="true" variants={itemVariants}>
               <Link 
                 to={organ.link}
                 className="group p-10 bg-white border border-[#e0e0e0] hover:border-[#C9A227] transition-all duration-500 flex flex-col items-center text-center h-full hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)]"

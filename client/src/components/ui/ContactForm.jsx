@@ -42,29 +42,34 @@ const ContactForm = () => {
 
   if (success) {
     return (
-      <div className="text-center p-12 border border-mabe-gold/30 bg-mabe-dark animate-fade-in">
-        <h3 className="text-mabe-gold font-display text-2xl mb-4 uppercase">Demande Transmise</h3>
-        <p className="text-mabe-silver font-light">Nos équipes reviendront vers vous sous 24h.</p>
-        <Button onClick={() => setSuccess(false)} variant="outline" className="mt-6">
+      <div className="text-center py-12">
+        <h3 className="text-[#C9A227] font-sans font-black text-2xl mb-4 uppercase tracking-tight">Demande Transmise</h3>
+        <p className="text-gray-600 font-light text-sm mb-8 leading-relaxed">
+          Nos équipes de direction reviendront vers vous sous 24h.
+        </p>
+        <button 
+          onClick={() => setSuccess(false)} 
+          className="px-8 py-4 border border-[#C9A227] text-[#C9A227] hover:bg-[#C9A227] hover:text-black transition-all duration-300 font-bold uppercase tracking-[0.2em] text-[10px] rounded-sm cursor-pointer"
+        >
           Envoyer un autre message
-        </Button>
+        </button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 bg-white/5 p-8 border border-white/10 shadow-2xl">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Input 
           label="Nom Complet" 
-          value={formData.full_name} // Ajout du value pour le reset
+          value={formData.full_name} 
           onChange={(e) => setFormData({...formData, full_name: e.target.value})}
           required 
         />
         <Input 
           label="Adresse Email" 
           type="email" 
-          value={formData.email} // Ajout du value
+          value={formData.email} 
           onChange={(e) => setFormData({...formData, email: e.target.value})}
           required 
         />
@@ -73,37 +78,42 @@ const ContactForm = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Input 
           label="Entreprise / Organisation" 
-          value={formData.company} // Ajout du value
+          value={formData.company} 
           onChange={(e) => setFormData({...formData, company: e.target.value})}
         />
         <div className="flex flex-col">
-          <label className="text-gray-400 text-xs uppercase mb-2 ml-1">Pôle d'intérêt</label>
+          <label className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mb-2 font-bold font-sans ml-1">Pôle d'intérêt</label>
           <select 
-            className="bg-mabe-dark border border-mabe-gold/10 p-3 text-mabe-silver outline-none focus:border-mabe-gold"
-            value={formData.pole_interest} // Ajout du value
+            className="w-full bg-[#FCFAF6] border border-gray-200 p-3.5 text-sm text-[#1A1A1A] focus:border-[#C9A227] outline-none transition-all rounded-sm font-sans"
+            value={formData.pole_interest}
             onChange={(e) => setFormData({...formData, pole_interest: e.target.value})}
           >
             <option value="Marketing">Marketing Digital & Influence</option>
             <option value="Industriel">Transformation Industrielle</option>
-            <option value="Commerce">Boutiques & Commerce</option>
+            <option value="Immobilier">Immobilier & Prestige</option>
+            <option value="Consulting">Digital Consulting</option>
           </select>
         </div>
       </div>
 
       <div>
-        <label className="text-gray-400 text-xs uppercase mb-2 ml-1">Votre Message</label>
+        <label className="block text-gray-400 text-[10px] uppercase tracking-[0.2em] mb-2 font-bold font-sans ml-1">Votre Message</label>
         <textarea 
-          rows="4"
-          className="w-full bg-mabe-dark border border-mabe-gold/10 p-3 text-mabe-silver focus:border-mabe-gold outline-none transition-all"
-          value={formData.message} // Ajout du value
+          rows="5"
+          className="w-full bg-[#FCFAF6] border border-gray-200 p-4 text-sm text-[#1A1A1A] focus:border-[#C9A227] outline-none transition-all rounded-sm font-sans resize-none"
+          value={formData.message}
           onChange={(e) => setFormData({...formData, message: e.target.value})}
           required
         ></textarea>
       </div>
 
-      <Button type="submit" variant="primary" className="w-full">
+      <button 
+        type="submit" 
+        disabled={loading}
+        className="w-full py-5 bg-[#C9A227] text-black font-bold uppercase tracking-[0.2em] text-xs hover:bg-[#1A1A1A] hover:text-[#C9A227] transition-all duration-300 rounded-sm shadow-sm cursor-pointer disabled:opacity-50 font-sans"
+      >
         {loading ? "Traitement en cours..." : "Soumettre la demande"}
-      </Button>
+      </button>
     </form>
   );
 };
