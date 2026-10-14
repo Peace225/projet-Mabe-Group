@@ -7,7 +7,7 @@ const activiteData = [
 
 const developpementData = [
   { id: 2, label: "Industriel", src: "/images/rupac.png", link: "/industrial" },
-  { id: 3, label: "Food", src: "/images/ngiafood.png", link: "/ngiafood" }
+  { id: 3, label: "Agroalimentaire", src: "/images/ngiafood.png", link: "/ngiafood" }
 ];
 
 export default function StatsPage() {

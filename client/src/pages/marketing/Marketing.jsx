@@ -66,7 +66,7 @@ const itemVariants = {
 export default function Marketing() {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  // État pour gérer l'ouverture/fermeture de la modale vidéo (Lightbox)
+  // État pour gérer l'ouverture/fermeture de la vidéo en grand écran (Lightbox)
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // URL publique de votre vidéo media.mp4 sur Supabase Storage
@@ -88,8 +88,8 @@ export default function Marketing() {
       />
 
       {/* --- HERO SECTION ANIMÉE --- */}
-      <section className="px-6 md:px-20 pt-32 md:pt-44 pb-24 max-w-[1600px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-20">
+      <section className="px-6 md:px-20 pt-32 md:pt-44 pb-20 max-w-[1600px] mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
           
           <motion.div 
             initial={{ opacity: 0, y: 60 }} 
@@ -134,29 +134,6 @@ export default function Marketing() {
             />
           </motion.div>
         </div>
-        
-        {/* Visuel principal avec effet de zoom au chargement */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.94, y: 40 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.4, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full h-[50vh] md:h-[70vh] bg-[#121212] overflow-hidden rounded-sm relative group border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8)]"
-        >
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-80 z-10" />
-          <img 
-            src="/images/digital.png" 
-            alt="NGIA Digital" 
-            className="w-full h-full object-cover object-center opacity-80 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105 filter contrast-105" 
-          />
-          <div className="absolute bottom-8 left-8 right-8 z-20 flex justify-between items-end pointer-events-none">
-            <span className="text-[10px] uppercase tracking-[0.4em] text-[#C9A227] font-bold">
-              [ Édition 2026 / 2027 ]
-            </span>
-            <span className="text-xs uppercase tracking-[0.3em] text-gray-400 font-light">
-              Abidjan — Paris
-            </span>
-          </div>
-        </motion.div>
       </section>
 
       {/* --- MANIFESTO SECTION --- */}
