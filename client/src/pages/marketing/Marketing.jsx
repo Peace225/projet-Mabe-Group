@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Sparkles, Compass, Layers, Zap, Globe, Award } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, Sparkles, Compass, Layers, Zap, Globe, Award, Play, X } from 'lucide-react';
 
 const services = [
   { 
@@ -65,6 +65,12 @@ const itemVariants = {
 
 export default function Marketing() {
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  // État pour gérer l'ouverture/fermeture de la modale vidéo (Lightbox)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // URL publique de votre vidéo media.mp4 sur Supabase Storage
+  const SUPABASE_MEDIA_VIDEO_URL = "https://ycvtejuiejotuwghmuoi.supabase.co/storage/v1/object/public/news-images/media.mp4";
 
   return (
     <div className="bg-[#0A0A0A] min-h-screen text-white selection:bg-[#C9A227] selection:text-black overflow-hidden relative">
@@ -204,47 +210,128 @@ export default function Marketing() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {services.map((s, i) => (
-            <motion.div 
-              key={i} 
-              variants={itemVariants}
-              whileHover={{ y: -8, borderColor: 'rgba(201, 162, 39, 0.5)', scale: 1.01 }}
-              transition={{ duration: 0.3 }}
-              className="group p-10 bg-white/[0.02] border border-white/10 rounded-sm relative overflow-hidden flex flex-col justify-between backdrop-blur-sm cursor-pointer"
-            >
-              {/* Lueur dorée dynamique au survol */}
-              <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#C9A227]/10 rounded-full blur-3xl group-hover:bg-[#C9A227]/25 transition-all duration-500 pointer-events-none" />
+          {services.map((s, i) => {
+            const isMediaCard = s.title === "Couverture Média";
 
-              <div>
-                <div className="flex justify-between items-center mb-10">
-                  <motion.div 
-                    whileHover={{ rotate: 10, scale: 1.1 }}
-                    className="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#C9A227] transition-colors"
-                  >
-                    {s.icon}
-                  </motion.div>
-                  <span className="text-[9px] uppercase tracking-widest text-[#C9A227] font-bold px-3 py-1 rounded-full bg-[#C9A227]/10">
-                    {s.tag}
-                  </span>
+            return (
+              <motion.div 
+                key={i} 
+                variants={itemVariants}
+                whileHover={{ y: -8, borderColor: 'rgba(201, 162, 39, 0.5)', scale: 1.01 }}
+                transition={{ duration: 0.3 }}
+                className="group p-10 bg-white/[0.02] border border-white/10 rounded-sm relative overflow-hidden flex flex-col justify-between backdrop-blur-sm"
+              >
+                {/* Lueur dorée dynamique au survol */}
+                <div className="absolute -right-20 -top-20 w-40 h-40 bg-[#C9A227]/10 rounded-full blur-3xl group-hover:bg-[#C9A227]/25 transition-all duration-500 pointer-events-none" />
+
+                <div>
+                  <div className="flex justify-between items-center mb-10">
+                    <motion.div 
+                      whileHover={{ rotate: 10, scale: 1.1 }}
+                      className="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-[#C9A227] transition-colors"
+                    >
+                      {s.icon}
+                    </motion.div>
+                    <span className="text-[9px] uppercase tracking-widest text-[#C9A227] font-bold px-3 py-1 rounded-full bg-[#C9A227]/10">
+                      {s.tag}
+                    </span>
+                  </div>
+
+                  <h4 className="text-xl md:text-2xl font-bold uppercase mb-4 text-white group-hover:text-[#C9A227] transition-colors font-sans">
+                    {s.title}
+                  </h4>
+                  
+                  <p className="text-xs md:text-sm font-light text-gray-400 leading-relaxed font-sans mb-8">
+                    {s.desc}
+                  </p>
                 </div>
 
-                <h4 className="text-xl md:text-2xl font-bold uppercase mb-4 text-white group-hover:text-[#C9A227] transition-colors font-sans">
-                  {s.title}
-                </h4>
-                
-                <p className="text-xs md:text-sm font-light text-gray-400 leading-relaxed font-sans mb-8">
-                  {s.desc}
-                </p>
-              </div>
+                {/* Miniature cliquable avec Bouton Play visible pour Couverture Média */}
+                {isMediaCard && (
+                  <div 
+                    onClick={() => setIsModalOpen(true)}
+                    className="mt-2 w-full aspect-video rounded-sm overflow-hidden border border-white/10 bg-black relative group/vid cursor-pointer shadow-inner"
+                    title="Cliquez pour lancer la vidéo"
+                  >
+                    <video 
+                      src={SUPABASE_MEDIA_VIDEO_URL} 
+                      poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80"
+                      playsInline
+                      className="w-full h-full object-cover group-hover/vid:scale-105 transition-transform duration-500 opacity-90 group-hover/vid:opacity-100"
+                    />
+                    {/* Overlay sombre avec bouton Play central proéminent */}
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover/vid:bg-black/25 transition-colors">
+                      <div className="w-12 h-12 rounded-full bg-[#C9A227] text-black flex items-center justify-center shadow-xl transform group-hover/vid:scale-110 transition-transform">
+                        <Play className="w-5 h-5 fill-current ml-0.5" />
+                      </div>
+                    </div>
+                    <span className="absolute bottom-2 right-2 bg-black/80 text-[#C9A227] text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider font-sans border border-[#C9A227]/30">
+                      ▶ Regarder
+                    </span>
+                  </div>
+                )}
 
-              <div className="pt-6 border-t border-white/5 flex items-center justify-between text-[10px] uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors">
-                <span>En savoir plus</span>
-                <ArrowUpRight className="w-4 h-4 text-[#C9A227] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </div>
-            </motion.div>
-          ))}
+                <div className="pt-6 border-t border-white/5 flex items-center justify-between text-[10px] uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors mt-6">
+                  <span>En savoir plus</span>
+                  <ArrowUpRight className="w-4 h-4 text-[#C9A227] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </section>
+
+      {/* --- MODALE PLEIN ÉCRAN (LIGHTBOX) POUR LA VIDÉO --- */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-10"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-5xl bg-black rounded-lg overflow-hidden shadow-2xl border border-[#C9A227]/30"
+            >
+              {/* Bouton de fermeture */}
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/70 border border-white/20 text-white flex items-center justify-center hover:bg-[#C9A227] hover:text-black transition-colors cursor-pointer"
+                aria-label="Fermer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Vidéo en grand format avec contrôles activés */}
+              <div className="w-full aspect-video bg-black flex items-center justify-center">
+                <video 
+                  src={SUPABASE_MEDIA_VIDEO_URL} 
+                  controls 
+                  autoPlay
+                  playsInline
+                  className="w-full h-full object-contain"
+                >
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+              </div>
+
+              <div className="p-4 bg-[#1a1a1a] text-white flex justify-between items-center border-t border-white/10">
+                <span className="text-xs uppercase tracking-[0.2em] text-[#C9A227] font-bold font-sans">
+                  Couverture Média — NGIA Digital
+                </span>
+                <span className="text-xs text-gray-400 font-light">
+                  Appuyez sur Échap ou cliquez en dehors pour fermer
+                </span>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* --- CALL TO ACTION ANIMÉ --- */}
       <section className="px-6 md:px-20 py-36 text-center relative overflow-hidden bg-gradient-to-t from-[#0A0A0A] to-[#121212] border-t border-white/10">

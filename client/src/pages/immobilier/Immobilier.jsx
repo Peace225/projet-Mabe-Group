@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Building, Key, ShieldCheck, TrendingUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight, Building, Key, ShieldCheck, TrendingUp, X, Play } from 'lucide-react';
 
 const expertiseItems = [
   { title: "Accompagnement d’investisseurs", desc: "Conseil sur-mesure pour particuliers & professionnels exigeants.", icon: <TrendingUp className="w-5 h-5 text-[#C9A227]" /> },
@@ -23,8 +23,13 @@ const itemVariants = {
 const Immobilier = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
+  // État pour gérer l'ouverture/fermeture de la vidéo en grand écran (Lightbox)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const SUPABASE_VIDEO_URL = "https://ycvtejuiejotuwghmuoi.supabase.co/storage/v1/object/public/news-images/promo.mp4";
+
   return (
-    <div className="bg-[#fcfaf6] min-h-screen pt-32 pb-24 text-[#1a1a1a] overflow-hidden">
+    <div className="bg-[#fcfaf6] min-h-screen pt-32 pb-24 text-[#1a1a1a] overflow-hidden relative">
       
       {/* --- HEADER --- */}
       <section className="max-w-7xl mx-auto px-6 text-center mb-28">
@@ -105,19 +110,95 @@ const Immobilier = () => {
                 whileHover={{ y: -5, borderColor: '#C9A227' }}
                 className="p-6 bg-white border border-[#e0e0e0] rounded-sm transition-all duration-300 shadow-sm flex flex-col justify-between"
               >
-                <div className="w-10 h-10 rounded-sm bg-[#fcfaf6] border border-[#e0e0e0] flex items-center justify-center mb-4">
-                  {item.icon}
-                </div>
                 <div>
+                  <div className="w-10 h-10 rounded-sm bg-[#fcfaf6] border border-[#e0e0e0] flex items-center justify-center mb-4">
+                    {item.icon}
+                  </div>
                   <h4 className="font-bold text-sm uppercase tracking-wider mb-2 font-sans">{item.title}</h4>
-                  <p className="text-xs text-gray-500 font-light leading-relaxed">{item.desc}</p>
+                  <p className="text-xs text-gray-500 font-light leading-relaxed mb-4">{item.desc}</p>
                 </div>
+
+                {/* Vidéo cliquable pour agrandir */}
+                {item.title === "Promotion immobilière digitale" && (
+                  <div 
+                    onClick={() => setIsModalOpen(true)}
+                    className="mt-2 w-full aspect-video rounded-sm overflow-hidden border border-gray-200 bg-black relative group cursor-pointer shadow-inner"
+                    title="Cliquez pour agrandir la vidéo"
+                  >
+                    <video 
+                      src={SUPABASE_VIDEO_URL} 
+                      poster="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80"
+                      playsInline
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                      <div className="w-10 h-10 rounded-full bg-[#C9A227] text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+                        <Play className="w-4 h-4 fill-current ml-0.5" />
+                      </div>
+                    </div>
+                    <span className="absolute bottom-2 right-2 bg-black/70 text-white text-[9px] px-2 py-0.5 rounded uppercase tracking-wider font-sans">
+                      Agrandir
+                    </span>
+                  </div>
+                )}
               </motion.div>
             ))}
           </motion.div>
 
         </div>
       </section>
+
+      {/* --- MODALE PLEIN ÉCRAN (LIGHTBOX) POUR LA VIDÉO --- */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-10"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-5xl bg-black rounded-lg overflow-hidden shadow-2xl border border-[#C9A227]/30"
+            >
+              {/* Bouton de fermeture */}
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/70 border border-white/20 text-white flex items-center justify-center hover:bg-[#C9A227] hover:text-black transition-colors"
+                aria-label="Fermer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Vidéo en grand format avec contrôles activés */}
+              <div className="w-full aspect-video bg-black flex items-center justify-center">
+                <video 
+                  src={SUPABASE_VIDEO_URL} 
+                  controls 
+                  autoPlay
+                  playsInline
+                  className="w-full h-full object-contain"
+                >
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
+              </div>
+
+              <div className="p-4 bg-[#1a1a1a] text-white flex justify-between items-center border-t border-white/10">
+                <span className="text-xs uppercase tracking-[0.2em] text-[#C9A227] font-bold font-sans">
+                  Promotion Immobilière Digitale - Maison Excellencia
+                </span>
+                <span className="text-xs text-gray-400 font-light">
+                  Appuyez sur Échap ou cliquez en dehors pour fermer
+                </span>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* --- VISUEL D'IMPACT --- */}
       <motion.section 
